@@ -84,3 +84,14 @@ def plot(x, y, theta, save_path, correction=1.0):
     plt.xlabel('x1')
     plt.ylabel('x2')
     plt.savefig(save_path)
+
+def sigmoid(z):
+    return 1.0/(1.0+np.exp(-z))
+
+def gradient(x,y):
+    h_x=sigmoid(x)
+    return (h_x-y)*x
+
+def hessian(x):
+    h_x=sigmoid(x)
+    return h_x*(1-h_x)*x*np.transpose(x)

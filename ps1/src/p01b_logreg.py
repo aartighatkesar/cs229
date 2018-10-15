@@ -18,6 +18,11 @@ def main(train_path, eval_path, pred_path):
     # Train a logistic regression classifier
     # Plot decision boundary on top of validation set set
     # Use np.savetxt to save predictions on eval set to pred_path
+    print(x_train.shape)
+    print(y_train.shape)
+    #logreg=LogisticRegression()
+    #logreg.fit(x_train,y_train)
+    #logreg.pre
     # *** END CODE HERE ***
 
 
