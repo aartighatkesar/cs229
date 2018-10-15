@@ -20,8 +20,8 @@ def main(train_path, eval_path, pred_path):
     # Use np.savetxt to save predictions on eval set to pred_path
     print(x_train.shape)
     print(y_train.shape)
-    #logreg=LogisticRegression()
-    #logreg.fit(x_train,y_train)
+    logreg=LogisticRegression()
+    logreg.fit(x_train,y_train)
     #logreg.pre
     # *** END CODE HERE ***
 
@@ -37,6 +37,18 @@ class LogisticRegression(LinearModel):
             y: Training example labels. Shape (m,).
         """
         # *** START CODE HERE ***
+        theta=np.zeros((x.shape[1],1))
+        y=y.reshape((y.shape[0],1))
+        error=1e9
+        numIters=0
+        while error>1e-5:
+            hess=util.hessian(x,theta)
+            Jprime=util.gradient(x,theta,y)
+            hessInv=np.linalg.inv(hess)
+            theta_new=theta-hessInv.dot(Jprime)
+            error=np.sum(np.abs(theta-theta_new))
+            theta=theta_new.copy()
+            numIters+=1
         # *** END CODE HERE ***
 
     def predict(self, x):
