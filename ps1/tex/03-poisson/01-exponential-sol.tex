@@ -1,2 +1,12 @@
-\begin{answer}
+\begin{answer}\\
+We know that the exponential family is given by $p(y;\lambda)=b(y)e^{\eta^T T(y)-a(\eta)}$\\
+So, on our case let us factor the equation into that format\\
+$p(y;\lambda)=\frac{e^{-\lambda}\lambda^y}{y!}=\frac{1}{y!}e^{-\lambda}\lambda^y=\frac{1}{y!}e^{-\lambda}e^{y log \lambda}=\frac{1}{y!}e^{y log \lambda-\lambda}$\\
+Therefore we have\\
+$b(y)=\frac{1}{y!}$\\
+$\eta=log \lambda$\\
+$T(y)=y$\\
+$a(\eta)=\lambda=e^{\eta}$\\
+\\
+$\therefore p(y;\eta)=\frac{1}{y!}e^{\eta y -e^{\eta}}$\\
 \end{answer}
