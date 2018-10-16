@@ -21,7 +21,7 @@ def main(train_path, eval_path, pred_path):
     x_eval, y_eval= util.load_dataset(eval_path, add_intercept=True)
     logreg=LogisticRegression()
     logreg.fit(x_train,y_train)
-    print(logreg.theta)
+    #print(logreg.theta)
     output=logreg.predict(x_eval)
     np.savetxt(pred_path,output)
     # *** END CODE HERE ***
