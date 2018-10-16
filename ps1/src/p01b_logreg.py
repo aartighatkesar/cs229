@@ -21,9 +21,10 @@ def main(train_path, eval_path, pred_path):
     x_eval, y_eval= util.load_dataset(eval_path, add_intercept=True)
     logreg=LogisticRegression()
     logreg.fit(x_train,y_train)
-    #print(logreg.theta)
     output=logreg.predict(x_eval)
     np.savetxt(pred_path,output)
+    util.plot(x_train, y_train, logreg.theta, pred_path.replace(".txt","_train.png"))
+    util.plot(x_eval, y_eval, logreg.theta, pred_path.replace(".txt", "_eval.png"))
     # *** END CODE HERE ***
 
 
@@ -44,7 +45,7 @@ class LogisticRegression(LinearModel):
         y=y.reshape((y.shape[0],1))
         error=1e9
         numIters=0
-        while error>1e-5 and numIters<self.max_iter:
+        while error>self.eps and numIters<self.max_iter:
             hess=util.hessian(x,self.theta)
             Jprime=util.gradient(x,self.theta,y)
             hessInv=np.linalg.inv(hess)

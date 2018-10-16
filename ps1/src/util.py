@@ -101,8 +101,10 @@ def hessian(x,theta):
     retMatrix=np.zeros((x.shape[1],x.shape[1]))
     for i in range(x.shape[1]):
         for j in range(x.shape[1]):
-            tempVal=(x[:,i].reshape(x.shape[0],1)*x[:,j].reshape(x.shape[0],1))
-            retMatrix[i][j]=np.sum(np.dot(tempVal.T,multiplier))/x.shape[0]
+            if i<=j:
+                tempVal=(x[:,i].reshape(x.shape[0],1)*x[:,j].reshape(x.shape[0],1))
+                retMatrix[i][j]=np.sum(np.dot(tempVal.T,multiplier))/x.shape[0]
+                retMatrix[j][i]=retMatrix[i][j]
 
     return retMatrix
 
