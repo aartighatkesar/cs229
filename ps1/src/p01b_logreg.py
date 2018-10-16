@@ -18,16 +18,18 @@ def main(train_path, eval_path, pred_path):
     # Train a logistic regression classifier
     # Plot decision boundary on top of validation set set
     # Use np.savetxt to save predictions on eval set to pred_path
-    print(x_train.shape)
-    print(y_train.shape)
-    #logreg=LogisticRegression()
-    #logreg.fit(x_train,y_train)
-    #logreg.pre
+    x_eval, y_eval= util.load_dataset(eval_path, add_intercept=True)
+    logreg=LogisticRegression()
+    logreg.fit(x_train,y_train)
+    print(logreg.theta)
+    output=logreg.predict(x_eval)
+    np.savetxt(pred_path,output)
     # *** END CODE HERE ***
 
 
 class LogisticRegression(LinearModel):
     """Logistic regression with Newton's Method as the solver."""
+
 
     def fit(self, x, y):
         """Run Newton's Method to minimize J(theta) for logistic regression.
@@ -37,6 +39,19 @@ class LogisticRegression(LinearModel):
             y: Training example labels. Shape (m,).
         """
         # *** START CODE HERE ***
+        if self.theta is None:
+            self.theta=np.zeros((x.shape[1],1))
+        y=y.reshape((y.shape[0],1))
+        error=1e9
+        numIters=0
+        while error>1e-5 and numIters<self.max_iter:
+            hess=util.hessian(x,self.theta)
+            Jprime=util.gradient(x,self.theta,y)
+            hessInv=np.linalg.inv(hess)
+            theta_new=self.theta-hessInv.dot(Jprime)
+            error=np.sum(np.abs(self.theta-theta_new))
+            self.theta=theta_new.copy()
+            numIters+=1
         # *** END CODE HERE ***
 
     def predict(self, x):
@@ -49,4 +64,5 @@ class LogisticRegression(LinearModel):
             Outputs of shape (m,).
         """
         # *** START CODE HERE ***
+        return util.sigmoid(x.dot(self.theta))
         # *** END CODE HERE ***

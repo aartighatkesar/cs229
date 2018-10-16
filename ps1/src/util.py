@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def add_intercept(x):
     """Add intercept to matrix x.
 
@@ -88,10 +87,31 @@ def plot(x, y, theta, save_path, correction=1.0):
 def sigmoid(z):
     return 1.0/(1.0+np.exp(-z))
 
-def gradient(x,y):
-    h_x=sigmoid(x)
-    return (h_x-y)*x
+def gradient(x,theta,y):
+    theta_x=np.matmul(x,theta)
+    h_x=sigmoid(theta_x)
+    delta_j=(h_x-y)
+    delta_j=(delta_j.T.dot(x))/x.shape[0]
+    return delta_j.T
 
-def hessian(x):
-    h_x=sigmoid(x)
-    return h_x*(1-h_x)*x*np.transpose(x)
+def hessian(x,theta):
+    theta_x = np.matmul(x, theta)
+    h_x = sigmoid(theta_x)
+    multiplier=h_x*(1-h_x)
+    retMatrix=np.zeros((x.shape[1],x.shape[1]))
+    for i in range(x.shape[1]):
+        for j in range(x.shape[1]):
+            tempVal=(x[:,i].reshape(x.shape[0],1)*x[:,j].reshape(x.shape[0],1))
+            retMatrix[i][j]=np.sum(np.dot(tempVal.T,multiplier))/x.shape[0]
+
+    return retMatrix
+
+#theta=np.array([[0],[0],[0]])
+#x=np.array([[0.2,0.4,0.1],[0.3,0.5,0.1]])
+#y=np.array([[1],[1]])
+#hess=hessian(x,theta)
+#print(x)
+#print(theta)
+#print(hess)
+#print(np.linalg.inv(hess))
+#print(gradient(x,theta,y))
