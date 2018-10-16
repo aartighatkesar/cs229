@@ -8,16 +8,16 @@ We can ignore the $\frac{1}{m}$ in the derivative since it is a constant and doe
 $\therefore \frac{\partial J}{\partial \theta_j}=-(y \frac{1}{g(\theta^T x)}g(\theta^T x)(1-g(\theta^T x))x_j + (1-y)\frac{1}{1-g(\theta^T x)}-g(\theta^T x)(1-g(\theta^T x))x_j)$
 $=-(yx_j-yx_jg(\theta^T x)-g(\theta^T x)x_j +yx_jg(\theta^T x))=\frac{1}{m} g(\theta^T x)x_j -yx_j$\\
 
-$\therefore \frac{\partial J^2}{\partial \theta_1^2}=g(\theta^T x)x_1^2$, $\frac{\partial J^2}{\partial \theta_1\theta_2}=g(\theta^T x)x_1x_2$ and so on...\\
+$\therefore \frac{\partial J^2}{\partial \theta_1^2}=g(\theta^T x)(1-g(\theta^T x))x_1^2$, $\frac{\partial J^2}{\partial \theta_1\theta_2}=g(\theta^T x)(1-g(\theta^T x))x_1x_2$ and so on...\\
 $\therefore H=$
 \[
 \begin{bmatrix}
-g(\theta^T x)x_1^2 & g(\theta^T x)x_1x_2 & \dots & g(\theta^T x)x_1x_n \\
-g(\theta^T x)x_1x_2 & g(\theta^T x)x_2^2 & \dots & g(\theta^T x)x_2x_n \\
+g(\theta^T x)(1-g(\theta^T x))x_1^2 & g(\theta^T x)(1-g(\theta^T x))x_1x_2 & \dots & g(\theta^T x)(1-g(\theta^T x))x_1x_n \\
+g(\theta^T x)(1-g(\theta^T x))x_1x_2 & g(\theta^T x)(1-g(\theta^T x))x_2^2 & \dots & g(\theta^T x)(1-g(\theta^T x))x_2x_n \\
 \vdots & \vdots & \vdots  & \vdots \\
-g(\theta^T x)x_1x_n & g(\theta^T x)z_2x_n & \dots & g(\theta^T x)x_n^2 \\
+g(\theta^T x)(1-g(\theta^T x))x_1x_n & g(\theta^T x)(1-g(\theta^T x))z_2x_n & \dots & g(\theta^T x)(1-g(\theta^T x))x_n^2 \\
 \end{bmatrix}
-\]=$g(\theta^T x)$
+\]=$g(\theta^T x)(1-g(\theta^T x))$
 \[
 \begin{bmatrix}
 x_1^2 & x_1x_2 & \dots & x_1x_n \\
@@ -26,8 +26,8 @@ x_1x_2 & x_2^2 & \dots & x_2x_n \\
 x_1x_n & z_2x_n & \dots & x_n^2 \\
 \end{bmatrix}
 \]\\
-but $g(\theta^T x) \in \mathbb{R} \geq 0$ since its the sigmoid function\\
-$\therefore z^THz=g(\theta^T x)(z_1^2x_1^2+2z_1x_1x_2z_2+\dots+z_n^2x_n^2)=g(\theta^T x)(x^Tz)$\\
-we already showed $x^Tz \geq 0$\\
+but $0 \leq g(\theta^T x) \leq 1$ since its the sigmoid function. Also $0 \leq (1-g(\theta^T x)) \leq1$\\
+$\therefore z^THz=g(\theta^T x)(1-g(\theta^T x))(z_1^2x_1^2+2z_1x_1x_2z_2+\dots+z_n^2x_n^2)=g(\theta^T x)(1-g(\theta^T x))(x^Tz)^2$\\
+we already showed $(x^Tz)^2 \geq 0$\\
 $\therefore z^THz \geq 0$
 \end{answer}
