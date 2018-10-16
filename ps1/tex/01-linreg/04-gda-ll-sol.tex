@@ -1,2 +1,28 @@
-\begin{answer}
+\begin{answer}\\
+We know that\\
+$p(y;\phi)$
+$\begin{cases}
+\phi $ if $y=1\\
+1-\phi$ if $y=0\\
+\end{cases}$\\
+and\\
+$p(x^{(i)}|y^{(i)}=0;\mu_0,\mu_1,\sigma)=\frac{1}{(2 \pi \sigma^2)^{1/2}}e^{-\frac{1}{2 \sigma^2}(x^{(i)}-\mu_0)^2}$\\
+$p(x^{(i)}|y^{(i)}=1;\mu_0,\mu_1,\sigma)=\frac{1}{(2 \pi \sigma^2)^{1/2}}e^{-\frac{1}{2 \sigma^2}(x^{(i)}-\mu_1)^2}$\\
+$l=log\prod_{i=1}^{m}p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\sigma)p(y;\phi)=\sum_{i=1}^{m}log(p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\sigma))+\sum_{i=1}^{m}log(p(y;\phi))$\\
+$=\sum_{i=1}^{m}[log{1}-\frac{1}{2}log(2 \pi) -\frac{1}{2}log(\sigma^2)-\frac{1}{2 \sigma^2}(x^{(i)}-\mu_{y^{(i)}})^2]+\sum_{i=1}^{m}y^{(i)}log \phi + (1-y^{(i)})log(1-\phi)$\\\\
+$\therefore \frac{\partial l}{\partial \phi}=\sum_{i=1}^{m}[\frac{y^{(i)}}{\phi}+\frac{1-y^{(i)}}{1-\phi}]=\frac{\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace }{\phi}+\frac{m-\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace}{1-\phi}=\frac{m \phi -\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace}{\phi (1-\phi)}$\\
+To naximize the log likelihood (and therefore the likelihood) we set the derivative to zero. We also know that we have at least 1 positive and negative example (each) so $\phi > 0$ and $1-\phi > 0$. Therefore we solve for the numerator=0\\
+$\therefore \frac{m \phi -\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace}{\phi (1-\phi)} \implies \phi=\frac{\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace}{m}$\\
+Similarly\\
+$\frac{\partial l}{\partial \mu_0}=\sum_{i;y^{(i)}=0}-\frac{1}{2 \sigma^2} \cdot 2 (x^{(i)}-\mu_0) \cdot -1=\frac{1}{\sigma^2}\sum_{i;y^{(i)}=0}(x^{(i)}-\mu_0)$\\
+Again, solving for this derivative=0 (note that $\sigma^2>0$) we have\\
+$\sum_{i;y^{(i)}=0}x^{(i)}=\sum_{i;y^{(i)}=0}\mu_0$\\
+but $\sum_{i;y^{(i)}=0}x^{(i)}=\sum_{i=1}^{m}1 \lbrace y^{(i)}=0 \rbrace x^{(i)}$ and $\sum_{i;y^{(i)}=0}\mu_0=\sum_{i=1}^{m}1 \lbrace y^{(i)}=0 \rbrace \mu_0$\\
+$\therefore \mu_0=\frac{\sum_{i=1}^{m}1 \lbrace y^{(i)}=0 \rbrace x^{(i)}}{\sum_{i=1}^{m}1 \lbrace y^{(i)}=0 \rbrace}$\\
+Similarly $\frac{\partial l}{\partial \mu_1}\sum_{i;y^{(i)}=1}=-\frac{1}{2 \sigma^2} \cdot 2 (x^{(i)}-\mu_1) \cdot -1=\frac{1}{\sigma^2}\sum_{i;y^{(i)}=1}(x^{(i)}-\mu_1)$\\
+Again, solving for zero we have $\sum_{i;y^{(i)}=1}x^{(i)}=\sum_{i;y^{(i)}=1}\mu_0 \implies \mu_1=\frac{\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace x^{(i)}}{\sum_{i=1}^{m}1 \lbrace y^{(i)}=1 \rbrace}$\\
+Finally, $\frac{\partial l}{\partial \sum}=\sum_{i=1}^{m}-\frac{1}{2}\frac{1}{\sum}+\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^2 \cdot -\frac{1}{\sum^2}$\\
+Solving for this =0 we have\\
+$\frac{1}{2 \sum^2}\sum_{i=1}^{m} [(x^{(i)}-\mu_{y^{(i)}})^2 -\sum] \implies \sum_{i=1}^{m} (x^{(i)}-\mu_{y^{(i)}})^2 - m \sum=0 $\\
+$\implies \sum=\frac{1}{m}\sum_{i=1}^{m} (x^{(i)}-\mu_{y^{(i)}})^2=\frac{1}{m}\sum_{i=1}^{m} (x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T$\\
 \end{answer}
