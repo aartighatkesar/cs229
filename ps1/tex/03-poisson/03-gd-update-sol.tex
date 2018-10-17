@@ -1,2 +1,10 @@
-\begin{answer}
+\begin{answer}\\
+$p(y^{(i)}|x^{(i)};\theta)=\frac{1}{y^{(i)}!}e^{\eta^Ty^{(i)}-e^{\eta}}$\\
+$\therefore log (p(y^{(i)}|x^{(i)};\theta))=log \frac{1}{y^{(i)}!}+ log (e^{\eta^Ty^{(i)}-e^{\eta}})$\\
+We know that $\eta=\theta^T x^{(i)}$\\
+$\therefore log (p(y^{(i)}|x^{(i)};\theta))=log \frac{1}{y^{(i)}!}+ log (e^{\theta^Tx^{(i)}y^{(i)}-e^{\theta^Tx}})=log \frac{1}{y^{(i)}!}+\theta^Tx^{(i)}y^{(i)}-e^{\theta^Tx^{(i)}}$\\
+$\therefore \frac{\partial log (p(y^{(i)}|x^{(i)};\theta))}{\partial \theta_j}=\frac{\partial log \frac{1}{y^{(i)}!}}{\partial \theta_j}+\frac{\partial \theta^Tx^{(i)}y^{(i)}}{\partial \theta_j}-\frac{\partial e^{\theta^Tx^{(i)}}}{\partial \theta_j}=x_j^{(i)}y^{(i)}-x_j^{(i)}e^{\theta^Tx^{(i)}}$\\
+$=x_j^{(i)}(y^{(i)}-e^{\theta^Tx^{(i)}})$\\
+Therefore \\
+$\theta_j=\theta_j+\alpha x_j^{(i)}(y^{(i)}-e^{\theta^Tx^{(i)}})$\\ 
 \end{answer}
