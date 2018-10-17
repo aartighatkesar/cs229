@@ -21,7 +21,7 @@ def main(lr, train_path, eval_path, pred_path):
     x_eval, y_eval = util.load_dataset(eval_path, add_intercept=False)
     poisonreg = PoissonRegression(step_size=lr)
     poisonreg.fit(x_train, y_train)
-    print(poisonreg.theta)
+    #print(poisonreg.theta)
     # Run on the validation set, and use np.savetxt to save outputs to pred_path
     output = poisonreg.predict(x_eval)
     np.savetxt(pred_path, output)
