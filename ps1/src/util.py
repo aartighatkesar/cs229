@@ -107,13 +107,3 @@ def hessian(x,theta):
                 retMatrix[j][i]=retMatrix[i][j]
 
     return retMatrix
-
-#theta=np.array([[0],[0],[0]])
-#x=np.array([[0.2,0.4,0.1],[0.3,0.5,0.1]])
-#y=np.array([[1],[1]])
-#hess=hessian(x,theta)
-#print(x)
-#print(theta)
-#print(hess)
-#print(np.linalg.inv(hess))
-#print(gradient(x,theta,y))
