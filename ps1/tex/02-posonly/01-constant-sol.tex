@@ -1,2 +1,11 @@
-\begin{answer}
+\begin{answer}\\
+Since all labeled examples are positive\\
+$p(y^{(i)}|x^{(i)})=p(t^{(i)}=1 \cap y^{(i)}=1|x)$\\
+Using the chain rule we have\\
+$p(y^{(i)}=1|x^{(i)})=p(t^{(i)}=1|x)p(y^{(i)}=1|t^{(i)}=1,x^{(i)})$\\\\
+But since $y^{(i)}$ and $x^{(i)}$ are conditionally independant given $t^{(i)}$\\
+$p(y^{(i)}=1|t^{(i)}=1,x^{(i)})=p(y^{(i)}=1|t^{(i)}=1)$\\\\
+$\therefore p(y^{(i)}=1|x^{(i)})=p(t^{(i)}=1|x)p(y^{(i)}=1|t^{(i)}=1)$\\
+$\implies p(t^{(i)}=1|x)=p(y^{(i)}=1|x) \frac{1}{p(y^{(i)}=1|t^{(i)}=1)}$\\
+Let $\alpha=p(y^{(i)}=1|t^{(i)}=1)$ then $p(t^{(i)}=1|x)=p(y^{(i)}=1|x)/\alpha$
 \end{answer}
