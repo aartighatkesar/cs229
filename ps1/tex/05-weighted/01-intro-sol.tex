@@ -27,5 +27,5 @@ $\therefore L(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)},\theta)=\prod_{i=1}^{m}\f
 $\therefore l(\theta)=log L(\theta)=\sum_{i=1}^{m}log\frac{1}{\sqrt{2 \pi}\sigma^{(i)}} -\frac{1}{2}\sum_{i=1}^{m}\frac{(\theta^T x^{(i)}-y^{(i)})^2}{(\sigma^{(i)})^2}$\\
 Maximizing $l(\theta)$ is the same as minimizing $\frac{1}{2}\sum_{i=1}^{m}\frac{(\theta^T x^{(i)}-y^{(i)})^2}{(\sigma^{(i)})^2}$\\
 $=\frac{1}{2}\sum_{i=1}^{m}\frac{1}{(\sigma^{(i)})^2} (\theta^T x^{(i)}-y^{(i)})^2$\\
-This reduces to a weighted linear regression where $w^{(i)}=\frac{1}{\sigma^{(i)})^2}$
+This reduces to a weighted linear regression where $w^{(i)}=\frac{1}{(\sigma^{(i)})^2}$
 \end{answer}
