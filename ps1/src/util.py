@@ -107,3 +107,14 @@ def hessian(x,theta):
                 retMatrix[j][i]=retMatrix[i][j]
 
     return retMatrix
+
+def plot_prob5(x_train,y_train,x_valid,y_valid,save_path):
+    # Plot dataset
+    plt.figure()
+    plt.plot(x_train,y_train,'bx', linewidth=2)
+    plt.plot(x_valid,y_valid,'ro', linewidth=2)
+
+    # Add labels and save to disk
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.savefig(save_path)
