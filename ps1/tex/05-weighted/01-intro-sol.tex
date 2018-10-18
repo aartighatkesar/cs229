@@ -1,2 +1,31 @@
-\begin{answer}
+\begin{answer}\\
+For 5a if we let $W$ be the diagonal matrix\\
+\[
+\begin{bmatrix}
+\frac{1}{2}w^{(1)} & 0 & \dots & 0 \\
+0 & \frac{1}{2}w^{(2)} & \dots & 0 \\
+\vdots & \vdots & \vdots  & \vdots \\
+0 & 0 & \dots & \frac{1}{2}w^{(m)} \\
+\end{bmatrix}\\
+\]
+Then we can express $J(\theta)$ as \\
+$J(\theta)=(X \theta - y)^TW(X \theta -y)$\\
+Note that we could remove the $\frac{1}{2}$ from the weight vector $W$ and write it as $J(\theta)=\frac{1}{2}(X \theta - y)^TW(X \theta -y)$ \\\\\\
+For 5b we know that $J(\theta)=(X\theta-y)^TW(X\theta-y)$\\
+$=\theta^TX^TWX\theta -\theta^TX^TWy-y^TWX\theta+y^TWy$\\
+Since this is a scalar, and $tr(a)=a$ is $a$ is a scalar, therefore we have\\
+$J(\theta)=tr(\theta^TX^TWX\theta -\theta^TX^TWy-y^TWX\theta+y^TWy)=tr(\theta^TX^TWX\theta) -tr(\theta^TX^TWy)-tr(y^TWX\theta)+tr(y^TWy)$\\
+Then $\nabla_{\theta}J(\theta)=\nabla_{\theta}tr(\theta^TX^TWX\theta) -\nabla_{\theta}tr(\theta^TX^TWy)-\nabla_{\theta}tr(y^TWX\theta)+\nabla_{\theta}tr(y^TWy)$\\
+$=(X^TWX)^T\theta+X^TWX\theta-2(Y^TWX)^T$\\
+$=2X^TWX\theta-2X^TWy$\\\\
+Setting this to zero, we have
+$X^TWX\theta=X^TWy \implies \theta=(X^TWX)^{-1}X^TWy$\\
+\\
+\\
+For 5c $p(y^{(i)}|x^{(i)},\theta)=\frac{1}{\sqrt{2 \pi} \sigma^{(i)}} e^-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2(\sigma^{(i)})^2}=\frac{1}{\sqrt{2 \pi} \sigma^{(i)}} e^-\frac{(\theta^Tx^{(i)}-y^{(i)})^2}{2(\sigma^{(i)})^2}$\\
+$\therefore L(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)},\theta)=\prod_{i=1}^{m}\frac{1}{\sqrt{2 \pi} \sigma^{(i)}} e^-\frac{(\theta^Tx^{(i)}-y^{(i)})^2}{2(\sigma^{(i)})^2}$\\
+$\therefore l(\theta)=log L(\theta)=\sum_{i=1}^{m}log\frac{1}{\sqrt{2 \pi}\sigma^{(i)}} -\frac{1}{2}\sum_{i=1}^{m}\frac{(\theta^T x^{(i)}-y^{(i)})^2}{(\sigma^{(i)})^2}$\\
+Maximizing $l(\theta)$ is the same as minimizing $\frac{1}{2}\sum_{i=1}^{m}\frac{(\theta^T x^{(i)}-y^{(i)})^2}{(\sigma^{(i)})^2}$\\
+$=\frac{1}{2}\sum_{i=1}^{m}\frac{1}{(\sigma^{(i)})^2} (\theta^T x^{(i)}-y^{(i)})^2$\\
+This reduces to a weighted linear regression where $w^{(i)}=\frac{1}{\sigma^{(i)})^2}$
 \end{answer}
