@@ -28,7 +28,7 @@ def main(train_path, eval_path, pred_path):
     #x_eval_scaled=np.divide(x_eval - x_min, x_max - x_min)
     output=gda.predict(x_eval)
     np.savetxt(pred_path,output)
-    theta_to_plot = np.vstack((gda.theta_0, gda.theta))
+    #theta_to_plot = np.vstack((gda.theta_0, gda.theta))
     #util.plot(x_train, y_train, theta_to_plot, pred_path.replace(".txt","_train.png"))
     #util.plot(x_eval, y_eval, theta_to_plot, pred_path.replace(".txt", "_eval.png"))
     # *** END CODE HERE ***

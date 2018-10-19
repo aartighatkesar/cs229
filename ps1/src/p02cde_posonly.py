@@ -46,7 +46,7 @@ def main(train_path, valid_path, test_path, pred_path):
     # Part (e): Apply correction factor using validation set and test on true labels
     # Plot and use np.savetxt to save outputs
     output_val = logreg.predict(x_eval)
-    np.savetxt("c:\\Users\\tihor\\Downloads\\temp.txt", output_val)
+    #np.savetxt("c:\\Users\\tihor\\Downloads\\temp.txt", output_val)
     alpha = np.sum(np.dot(output_val.T, y_eval)) / np.sum(y_eval)
     output_test_new = np.divide(output_test, alpha)
     np.savetxt(pred_path_e, output_test_new)

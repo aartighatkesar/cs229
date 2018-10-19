@@ -29,12 +29,12 @@ def main(tau_values, train_path, valid_path, test_path, pred_path):
         locallyweightedlinearregression.fit(x_train, y_train)
         output = locallyweightedlinearregression.predict(x_eval)
         mse = np.sum((y_eval - output) ** 2) / y_eval.shape[0]
-        print(tau,mse)
+        #print(tau,mse)
         if mse<lowest_mse:
             lowest_mse=mse
             lowest_tau=tau
         #util.plot_prob5(x_train, y_train, x_eval, output, 'output/p05c_plot_'+str(tau).replace(".","_") +'_tau.png')
-    print(lowest_tau,lowest_mse)
+    #print(lowest_tau,lowest_mse)
 
     # Run on the test set to get the MSE value
     x_test, y_test= util.load_dataset(test_path, add_intercept=True)
@@ -42,7 +42,7 @@ def main(tau_values, train_path, valid_path, test_path, pred_path):
     locallyweightedlinearregression.fit(x_train, y_train)
     output = locallyweightedlinearregression.predict(x_test)
     mse = np.sum((y_test-output) ** 2) / y_test.shape[0]
-    print(mse)
+    #print(mse)
     # Save test set predictions to pred_path
     np.savetxt(pred_path, output)
     # Plot data
