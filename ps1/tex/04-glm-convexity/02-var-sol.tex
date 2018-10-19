@@ -1,2 +1,9 @@
-\begin{answer}
+\begin{answer}\\
+$\frac{\partial^2 a}{\partial^2 \eta}=\frac{\partial}{\partial \eta} \int y b(y) e^{\eta y - a(\eta)} dx$\\
+$=y b(y) \int \frac{\partial}{\partial \eta}  e^{\eta y} e^{-a(\eta)} dx$\\
+$=y b(y) \int ye^{\eta y}e^{-a(\eta)}+e^{\eta y}e^{-a(\eta)} \cdot -\frac{\partial a(\eta)}{\partial \eta}dx$\\
+$=y b(y) \int e^{\eta y-a(\eta)}[y-\frac{\partial a(\eta)}{\partial \eta}]dx$\\
+$=\int b(y)e^{\eta y-a(\eta)} y [y-\frac{\partial a(\eta)}{\partial \eta}]dx$\\
+$=\int p(y;\eta) y^2 dx-\frac{\partial a(\eta)}{\partial \eta} \int p(y;\eta) y dx$\\
+$=E[y^2]-E[y]E[y]=E[y^2]-E[y]^2=Var(Y|X;\theta)$\\
 \end{answer}

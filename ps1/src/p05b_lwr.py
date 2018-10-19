@@ -25,7 +25,7 @@ def main(tau, train_path, eval_path):
     output=locallyweightedlinearregression.predict(x_eval)
     mse=np.sum((y_eval-output)**2)/y_eval.shape[0]
     print(mse)
-    util.plot_prob5(x_train,y_train,x_eval,output,'output/p05b_plot.png')
+    #util.plot_prob5(x_train,y_train,x_eval,output,'output/p05b_plot.png')
     # Plot validation predictions on top of training set
     # No need to save anything
     # Plot data

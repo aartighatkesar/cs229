@@ -1,2 +1,14 @@
-\begin{answer}
+\begin{answer}\\
+$p(y;\eta)=b(y)e^{\eta y -a(\eta)}$\\
+Since this is the probability density function, $\int_{- \infty}^{\infty}p(y;\eta)dy=1$\\
+$\therefore \int_{- \infty}^{\infty}p(y;\eta)dy=\int b(y)e^{\eta y -a(\eta)}dy=1$\\
+$\implies \int b(y)e^{\eta y} e^{-a(\eta)}dy=1$\\
+$\implies e^{-a(\eta)} \int b(y)e^{\eta y}dy=1$\\
+$\implies \int b(y)e^{\eta y}dy=e^{a(\eta)}$\\
+$\implies log \int b(y)e^{\eta y}dy=a(\eta)$\\\\
+$\therefore \frac{\partial a(\eta)}{\partial \eta}=\frac{\partial}{\partial \eta} log \int b(y)e^{\eta y}dy$\\
+$=\frac{1}{\int b(y)e^{\eta y}dy} \frac{\partial}{\partial \eta} \int b(y)e^{\eta y}dy$\\
+$=\frac{1}{e^{a(\eta)}} \int (\frac{\partial}{\partial \eta} b(y)e^{\eta y})dy$\\
+$=\frac{1}{e^{a(\eta)}} \int y b(y)e^{\eta y}dy$\\
+$\int y b(y)e^{\eta y - a(\eta)}dy=\int y p(y;\eta) = E[y|X; \theta]$\\
 \end{answer}

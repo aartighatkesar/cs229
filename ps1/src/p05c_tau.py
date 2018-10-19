@@ -33,7 +33,7 @@ def main(tau_values, train_path, valid_path, test_path, pred_path):
         if mse<lowest_mse:
             lowest_mse=mse
             lowest_tau=tau
-        util.plot_prob5(x_train, y_train, x_eval, output, 'output/p05c_plot_'+str(tau).replace(".","_") +'_tau.png')
+        #util.plot_prob5(x_train, y_train, x_eval, output, 'output/p05c_plot_'+str(tau).replace(".","_") +'_tau.png')
     print(lowest_tau,lowest_mse)
 
     # Run on the test set to get the MSE value

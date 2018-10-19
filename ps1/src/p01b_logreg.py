@@ -23,8 +23,8 @@ def main(train_path, eval_path, pred_path):
     logreg.fit(x_train,y_train)
     output=logreg.predict(x_eval)
     np.savetxt(pred_path,output)
-    util.plot(x_train, y_train, logreg.theta, pred_path.replace(".txt","_train.png"))
-    util.plot(x_eval, y_eval, logreg.theta, pred_path.replace(".txt", "_eval.png"))
+    #util.plot(x_train, y_train, logreg.theta, pred_path.replace(".txt","_train.png"))
+    #util.plot(x_eval, y_eval, logreg.theta, pred_path.replace(".txt", "_eval.png"))
     # *** END CODE HERE ***
 
 
