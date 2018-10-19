@@ -7,7 +7,7 @@ $=(\sum_{i=1}^{m}y^{(i)} - m \frac{\partial a(\eta)}{\partial \eta})x$\\
 $=(\sum_{i=1}^{m}y^{(i)} - m E[y])x$\\\\
 $\therefore \frac{\partial^2 l}{\partial^2 \theta}=\frac{\partial}{\partial \eta}[\frac{\partial l}{\partial \theta}] \cdot \frac{\partial \eta}{\partial \theta}$\\
 $=(-m \frac{\partial E[y]}{\partial \eta}x)\cdot x$\\
-$=-m Var[y] x^2$\\
+$=-m Var[y] x^Tx$\\
 So maximizing the likelihood is the same as minimizing $m a(\eta)$\\
 The derivative for that is $m Var[y] x^Tx$ but $m >0$, variance is non negative and $x^Tx$ is positive semi definite.\\
 $\therefore m Var[y] x^2$ is positive semi definite.
