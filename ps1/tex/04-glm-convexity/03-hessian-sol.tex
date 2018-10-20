@@ -2,11 +2,11 @@
 We know that $\eta=\theta^T x^{(i)}$\\
 $L(\theta)=\prod_{i=1}^{m} p(y;\eta)$\\
 $l(\theta)=log L(\theta)=log \prod_{i=1}^{m}b(y^{(i)})e^{\eta y^{(i)}-a(\eta)}=log \prod_{i=1}^{m} b(y^{(i)}) + \eta \sum_{i=1}^{m}y^{(i)} -m a(\eta)$\\\\
-$\therefore \frac{\partial l}{\partial \theta}=\frac{\partial l}{\partial \eta}\cdot \frac{\partial \eta}{\partial \theta}$\\
-$=(\sum_{i=1}^{m}y^{(i)} - m \frac{\partial a(\eta)}{\partial \eta})x$\\
-$=(\sum_{i=1}^{m}y^{(i)} - m E[y])x$\\\\
-$\therefore \frac{\partial^2 l}{\partial^2 \theta}=\frac{\partial}{\partial \eta}[\frac{\partial l}{\partial \theta}] \cdot \frac{\partial \eta}{\partial \theta}$\\
-$=(-m \frac{\partial E[y]}{\partial \eta}x)\cdot x$\\
+$\therefore \frac{\partial l}{\partial \theta_i}=\frac{\partial l}{\partial \eta}\cdot \frac{\partial \eta}{\partial \theta_i}$\\
+$=(\sum_{i=1}^{m}y^{(i)} - m \frac{\partial a(\eta)}{\partial \eta})x_i$\\
+$=(\sum_{i=1}^{m}y^{(i)} - m E[y])x_i$\\\\
+$\therefore \frac{\partial^2 l}{\partial \theta_i \partial \theta_j}=\frac{\partial}{\partial \eta}[\frac{\partial l}{\partial \theta}] \cdot \frac{\partial \eta}{\partial \theta_j}$\\
+$=(-m \frac{\partial E[y]}{\partial \eta}x_i)\cdot x_j$\\
 $=-m Var[y] x^Tx$\\
 So maximizing the likelihood is the same as minimizing $m a(\eta)$\\
 The derivative for that is $m Var[y] x^Tx$ but $m >0$, variance is non negative and $x^Tx$ is positive semi definite.\\
