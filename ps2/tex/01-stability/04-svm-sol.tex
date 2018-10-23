@@ -1,3 +1,3 @@
 \begin{answer}\\
-SVMs would not have an issue with convergence on datasets like B. SVMs use the hinge loss which is not affected by the scaling of $\theta$ (as $\theta$ gets large, it is cut off at 0 using the max function.
+SVMs would not have an issue with convergence on datasets like B. Unlike logistic regression which solves for a decision boundary that maximizes the likelihood, SVMs solve for the decision boundary that maximizes the geometric margin, which is invariant to rescaling of the parameters.
 \end{answer}
