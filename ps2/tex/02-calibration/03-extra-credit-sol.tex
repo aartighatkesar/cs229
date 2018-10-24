@@ -1,5 +1,8 @@
 \begin{answer}\\
-Adding $L_2$ regularization changes our cost function becomes\\
-$J(\theta)=\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}logh_{\theta}(x^{(i)})+(1-y^{(i)})log(1-h_{\theta}(x^{(i)}))]$\\
-Also $\frac{\partial}{\partial \theta_j}J(\theta)=\frac{1}{m}\sum_{i=1}^{m}x_j^{(i)}(y^{(i)}-h_{\theta}(x^{(i)}))$\\
+Adding $L_2$ regularization changes our cost function\\
+$J(\theta)=\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}logh_{\theta}(x^{(i)})+(1-y^{(i)})log(1-h_{\theta}(x^{(i)}))] + \frac{\lambda}{2m}||\theta||^2$\\
+now $\frac{\partial}{\partial \theta_j}J(\theta)=\frac{1}{m}\sum_{i=1}^{m}x_j^{(i)}(y^{(i)}-h_{\theta}(x^{(i)}))+\frac{\lambda}{m}\theta_j$\\
+Therefore adding $L_2$ regularization skews the intercept by a $constant \times \theta_0$\\
+This is effectively adding a bias term to the calculation.\\
+Note that $L_2$ regularization is usually not applied to the bias term.
 \end{answer}
