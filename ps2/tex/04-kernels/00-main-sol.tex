@@ -12,5 +12,10 @@ Since $K_1$ is a Kernel, $z^TK_1z \geq 0$. Also since $a$ is a positive real num
 (e) \\
 (f) $K(x,y)=f(x)f(z)$. Then $z^TKz=z_1^2f(x^{(1)})^2+2z_1z_2f(x^{(1)})f(x^{(2)})+z_2^2f(x^{(2)})^2+2z_2z_3f(x^{(2)})f(x^{(3)})+z_3^2f(x^{(3)})^2 \dots +z_3^2f(x^{(3)})^2=(\sum_{i=1}^{m}u_i f(x^{(i)}))^2 \geq 0$\\
 Therefore it is a kernel\\
-(g) 
+(g) \\
+(h) The polynomial can be written as $a_tK_3(x,z)^t+a_{t-1}K_3(x,z)^{t-1}+a_{t-2}K_3(x,z)^{t-2}+\dots+a_1K_3(x,z)+a_0$\\
+From (e) the power of a Kernel is a Kernel\\
+From (c) a positive number times a Kernel is a Kernel\\
+Therefore each of the terms of the polynomial is a Kernel\\
+Finally from (a) the sum of 2 kernels is a kernel. Therefore the polynomial is a kernel.
 \end{answer}
