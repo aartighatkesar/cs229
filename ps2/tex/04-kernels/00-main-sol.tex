@@ -1,6 +1,6 @@
 \begin{answer}\\
 (a). We know that $K_1$ and $K_2$ are kernels. Therefore by definition they are positive semi definite.\\
-Therefore $\forall z$, $z^TK_1z \geq 0$ and $\forall z z^TK_2z \geq 0$\\
+Therefore $\forall z$, $z^TK_1z \geq 0$ and $\forall z, z^TK_2z \geq 0$\\
 $\therefore z^TKz = z^TK_1z+z^TK_2z \geq 0$. Therefore $K$ is positive semidifinite. Therefore $K$ is a kernel.\\
 \\
 (b) From part (c) below we know that a positive number $\times$ a Kernel is a Kernel. So if we take $K2=aK_1 (a \geq 2)$ then $K=K_1-aK_1=(1-a)K_1$\\
@@ -9,5 +9,7 @@ But $1-a <0$ therefore using proof in part (d) we can say it is not a Kernel.\\
 Since $K_1$ is a Kernel, $z^TK_1z \geq 0$. Also since $a$ is a positive real number, $az^TK_1z \geq 0$ therefore it is a Kernel.\\
 (d) $\forall z$, $z^TKz=z^T(-aK_1)z=-az^TK_1z$\\
 Since $K_1$ is a Kernel, $z^TK_1z \geq 0$. Also since $a$ is a positive real number, $-az^TK_1z \leq 0$ therefore it is NOT a Kernel.\\
-(e) 
+(e) \\
+(f) $K(x,y)=f(x)f(z)$. Then $z^TKz=z_1^2f(x^{(1)})^2+2z_1z_2f(x^{(1)})f(x^{(2)})+z_2^2f(x^{(2)})^2+2z_2z_3f(x^{(2)})f(x^{(3)})+z_3^2f(x^{(3)})^2 \dots +z_3^2f(x^{(3)})^2=(\sum_{i=1}^{m}u_i f(x^{(i)}))^2 \geq 0$\\
+Therefore it is a kernel
 \end{answer}
