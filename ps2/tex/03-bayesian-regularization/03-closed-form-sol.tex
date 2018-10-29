@@ -2,13 +2,13 @@
 Linear regression with regularization can be expressed in matrix form as \\
 $(X\theta-y)^T (X\theta-y)+\lambda \theta^T \theta$\\
 Note that in the class notes there was a $\frac{1}{2}$ term that neutralized the 2 coming out of the derivative, but it cancels out when we equate the derivative to zero so we can ignore it\\
-$\therefore J(\theta)=(X\theta-y)^T (X\theta-y)+\lambda \theta^T \theta=(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^ty) + \lambda \theta^T \theta$\\
-$\therefore J(\theta)=tr \left [(X\theta-y)^T (X\theta-y)+\lambda \theta^T \theta=(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^ty) + \lambda \theta^T \theta \right ]=tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^ty) + tr(\lambda \theta^T \theta)$\\
-$=tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^ty) + \lambda tr(\theta^T \theta)$\\
-Then $\nabla_{\theta}J(\theta)=\nabla_{\theta}tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^ty)+\lambda \nabla_{\theta} tr(\theta^T \theta)$\\
-In the class notes we already derived $\nabla_{\theta}tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^ty) = 2(X^TX\theta - X^Ty)$\\
-We also know that $\nabla_{A} tr(ABA^TC)=CAB+C^TAB^T$. Let $A=\theta, B=I and C=I$\\
-Then $tr(\theta I \theta^T I)=I \theta I+ I \theta I = 2 \theta$\\
+$\therefore J(\theta)=(X\theta-y)^T (X\theta-y)+\lambda \theta^T \theta=(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^Ty) + \lambda \theta^T \theta$\\
+$\therefore J(\theta)=tr \left [(X\theta-y)^T (X\theta-y)+\lambda \theta^T \theta=(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^Ty) + \lambda \theta^T \theta \right ]=tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^Ty) + tr(\lambda \theta^T \theta)$\\
+$=tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^Ty) + \lambda tr(\theta^T \theta)$\\
+Then $\nabla_{\theta}J(\theta)=\nabla_{\theta}tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^Ty)+\lambda \nabla_{\theta} tr(\theta^T \theta)$\\
+In the class notes we already derived $\nabla_{\theta}tr(\theta^TX^TX \theta-\theta^TX^Ty -y^TX\theta+y^Ty) = 2(X^TX\theta - X^Ty)$\\
+We also know that $\nabla_{A} tr(ABA^TC)=CAB+C^TAB^T$. Let $A=\theta, B=I$ and $C=I$\\
+Then $\nabla_{\theta}tr(\theta I \theta^T I)=I \theta I+ I \theta I = 2 \theta$\\
 $\therefore \nabla_{\theta}J(\theta)=2(X^TX\theta - X^Ty - \lambda \theta)=2(X^TX\theta - X^Ty - \lambda I \theta)$\\
 Setting this to zero we have
 $2(X^TX\theta - X^Ty - \lambda I \theta)=0$\\
