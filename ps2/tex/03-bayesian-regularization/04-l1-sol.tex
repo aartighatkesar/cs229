@@ -1,2 +1,8 @@
-\begin{answer}
+\begin{answer}\\
+$L(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)},\theta)p(\theta)=\prod_{i=1}^{m}\frac{1}{\sqrt{2 \pi}\sigma}exp(-\frac{(y^{(i)}-\theta^T x^{(i)})^2}{2 \sigma^2}) \cdot \frac{1}{2b}exp(-\frac{|\theta|}{b})$\\
+$\therefore l(\theta)=log(L(\theta))=\sum_{i=1}^{m}\left [ log \frac{1}{\sqrt{2 \pi} \sigma}-\frac{1}{\sigma^2}\frac{1}{2}(y^{(i)}-\theta^T x^{(i)})^2 + log \frac{1}{2b} -\frac{|\theta|}{b}]$\\
+$=\sum_{i=1}^{m}\left [ log \frac{1}{\sqrt{2 \pi} \sigma}-\frac{1}{\sigma^2}\frac{1}{2}(y^{(i)}-\theta^T x^{(i)})^2 \right ] + m log \frac{1}{b} - \frac{1}{b}\sum_{j=0}^{n}|\theta|$\\
+Maximizing the likelihood is the same as mimizing $\sum_{i=1}^{m}\frac{1}{2}(y^{(i)}-\theta^T x^{(i)})^2$ and $\frac{1}{b}\sum_{j=0}^{n}|\theta|$\\
+Therefore $J(\theta)=||X\theta-y||_2^2-\gamma||\theta||_1$
+where $\gamma=\frac{1}{b}$
 \end{answer}
