@@ -1,2 +1,6 @@
-\begin{answer}
+\begin{answer}\\
+Let $L(\theta)=\prod_{i=1}^{m}p(y|x,\theta)p(\theta)=\prod_{i=1}^{m}\frac{1}{\sqrt{2 \pi}\sigma}exp(-\frac{(y^{(i)}-\theta^T x^{(i)})^2}{2 \sigma^2}) \cdot \frac{1}{\sqrt{2 \pi}\eta I} exp(- \frac{(\theta-0)^2}{2 \eta^2 I})$\\
+$\therefore l(\theta)=log(L(\theta))=\sum_{i=1}^{m}\left \lbrace log \frac{1}{\sqrt{2 \pi} \sigma}-\frac{1}{\sigma^2}\frac{1}{2}(y^{(i)}-\theta^T x^{(i)})^2 + log \frac{1}{\sqrt{2 \pi}\eta I} -\frac{1}{\eta^2 I}\frac{1}{2} \theta^2 \right \rbrace$\\
+$=\sum_{i=1}^{m}\left \lbrace log \frac{1}{\sqrt{2 \pi} \sigma}-\frac{1}{\sigma^2}\frac{1}{2}(y^{(i)}-\theta^T x^{(i)})^2 \right \rbrace + m log \frac{1}{\sqrt{2 \pi}\eta I} -\frac{1}{\eta^2 I}\frac{1}{2} ||\theta||_2^2$\\
+
 \end{answer}
