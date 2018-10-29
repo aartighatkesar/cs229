@@ -9,8 +9,25 @@ But $1-a <0$ therefore using proof in part (d) we can say it is not a Kernel.\\
 Since $K_1$ is a Kernel, $z^TK_1z \geq 0$. Also since $a$ is a positive real number, $az^TK_1z \geq 0$ therefore it is a Kernel.\\
 (d) $\forall z$, $z^TKz=z^T(-aK_1)z=-az^TK_1z$\\
 Since $K_1$ is a Kernel, $z^TK_1z \geq 0$. Also since $a$ is a positive real number, $-az^TK_1z \leq 0$ therefore it is NOT a Kernel.\\
-(e) \\
-(f) $K(x,y)=f(x)f(z)$. Then $z^TKz=z_1^2f(x^{(1)})^2+2z_1z_2f(x^{(1)})f(x^{(2)})+z_2^2f(x^{(2)})^2+2z_2z_3f(x^{(2)})f(x^{(3)})+z_3^2f(x^{(3)})^2 \dots +z_3^2f(x^{(3)})^2=(\sum_{i=1}^{m}u_i f(x^{(i)}))^2 \geq 0$\\
+(e) We know that $K_1$ and $K_2$ are PSD\\
+Therefore $z^TK_1z \geq 0$ and $z^TK_2z \geq 0$\\
+Also $Z=zz^T$ is PSD. Let $U$ be orthogonal matrix. Then $UU^T=U^TU=I$\\
+Then we know that $Z=U\Lambda U^T$\\
+And $(U\Lambda U^T)^{-1}=(U^T)^{-1}(U \Lambda)^{-1}=U \Lambda^{-1} U^T$\\
+$\therefore (zz^T)(zz^T)^{-1}(zz^T)^{-1}(zz^T)=I$\\
+$\implies zz^T U \Lambda^{-1} U^T U \Lambda^{-1} U^T zz^T=I$\\
+$\implies zz^T U \Lambda^{-1} \Lambda^{-1} U^T zz^T=I$\\
+$\implies zz^T U \Lambda^{-2} U^T zz^T=I$\\
+Let $x=U^Tz$. then $x^T=z^TU$. Therefore we can rewrite the above as\\
+$z x^T \Lambda^{-2} x z^T=I$\\
+Finally we have \\
+$z^TKz=z^TK_1K_2z=z^TK_1IK_2z=z^TK_1 z x^T \Lambda^{-2} x z^TK_2z$\\
+Since $\Lambda^{-2}$ is a diagonal matrix, it is positive semidefinite. Therefore $x^T \Lambda^{-2} x \geq 0$ and we already know that $z^TK_1 z \geq 0$ and $z^TK_2 z \geq 0$\\
+Therefore the RHS is $\geq 0$\\
+Therefore $z^TKz \geq 0$ and therefore it is a Kernel\\ 
+(f) $K(x,y)=f(x)f(z)$.\\
+Then $z^TKz=z_1^2f(x^{(1)})^2+2z_1z_2f(x^{(1)})f(x^{(2)})+z_2^2f(x^{(2)})^2+2z_2z_3f(x^{(2)})f(x^{(3)})+z_3^2f(x^{(3)})^2 \dots +z_3^2f(x^{(3)})^2$\\
+$=(\sum_{i=1}^{m}z_i f(x^{(i)}))^2 \geq 0$\\
 Therefore it is a kernel\\
 (g) \\
 (h) The polynomial can be written as $a_tK_3(x,z)^t+a_{t-1}K_3(x,z)^{t-1}+a_{t-2}K_3(x,z)^{t-2}+\dots+a_1K_3(x,z)+a_0$\\
