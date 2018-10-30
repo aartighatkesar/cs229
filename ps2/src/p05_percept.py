@@ -14,6 +14,7 @@ def initial_state():
     """
 
     # *** START CODE HERE ***
+    xxx=-1
     # *** END CODE HERE ***
 
 def predict(state, kernel, x_i):
