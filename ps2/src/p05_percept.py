@@ -14,7 +14,9 @@ def initial_state():
     """
 
     # *** START CODE HERE ***
-    xxx=-1
+    betas=[]
+    prev_x=[]
+    return (betas,prev_x)
     # *** END CODE HERE ***
 
 def predict(state, kernel, x_i):
@@ -29,6 +31,17 @@ def predict(state, kernel, x_i):
         Returns the prediction (i.e 0 or 1)
     """
     # *** START CODE HERE ***
+    (betas, prev_x) = state
+    sum_for_kernel = 0.0
+    # temp=0.0
+    for i, beta in enumerate(betas):
+        # temp = beta * prev_x[i]
+        # sum_of_terms += temp
+        sum_for_kernel += beta * kernel(prev_x[i], x_i)
+    # temp = kernel(sum_of_terms, x_i)
+    # h_theta =sign(temp)
+    h_theta = sign(sum_for_kernel)
+    return h_theta
     # *** END CODE HERE ***
 
 def update_state(state, kernel, learning_rate, x_i, y_i):
@@ -42,6 +55,21 @@ def update_state(state, kernel, learning_rate, x_i, y_i):
         y_i: A 0 or 1 indicating the label for a single instance
     """
     # *** START CODE HERE ***
+    (betas, prev_x) = state
+    #sum_of_terms = [0.0,0.0]
+    sum_for_kernel = 0.0
+    #temp=0.0
+    for i, beta in enumerate(betas):
+        #temp = beta * prev_x[i]
+        #sum_of_terms += temp
+        sum_for_kernel += beta * kernel(prev_x[i], x_i)
+    #temp = kernel(sum_of_terms, x_i)
+    #h_theta =sign(temp)
+    h_theta =sign(sum_for_kernel)
+    new_beta = learning_rate*(y_i-h_theta)
+    betas.append(new_beta)
+    prev_x.append(x_i)
+    return(betas,prev_x)
     # *** END CODE HERE ***
 
 def sign(a):
