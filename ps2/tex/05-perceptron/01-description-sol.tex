@@ -2,25 +2,25 @@
 i.\\
 We know that\\
 $\theta^{(0)}=0$\\
-$\theta^{(1)}=\alpha(y^{(1)}-h_{\theta^{(0)}(\phi(x^{(1)}))\phi(x^{(1)})$\\
-We can represent $\alpha(y^{(1)}-h_{\theta^{(0)}(\phi(x^{(1)}))$ as $\Beta_1$\\
-$\therefore \theta^{(1)}=\Beta_1 \phi(x^{(1)})$\\
-$\theta^{(2)}=\theta^{(1)}+\alpha(y^{(2)}-h_{\theta^{(1)}(\phi(x^{(2)}))\phi(x^{(2)})$\\
-Again we can represent $\alpha(y^{(2)}-h_{\theta^{(1)}(\phi(x^{(2)}))$ as $\Beta_2$\\
-$\therefore \theta^{(2)}=\Beta_1 \phi(x^{(1)})+\Beta_2 \phi(x^{(2)})$\\
-$\theta^{(3)}=\theta^{(2)}+\alpha(y^{(3)}-h_{\theta^{(2)}(\phi(x^{(3)}))\phi(x^{(3)})$\\
-$similarly we can represent $\alpha(y^{(3)}-h_{\theta^{(2)}(\phi(x^{(3)}))$ as $\Beta_3$\\
-$\therefore \theta^{(3)}=\Beta_1 \phi(x^{(1)})+\Beta_2 \phi(x^{(2)})+\Beta_3 \phi(x^{(3)})$\\
-In general $\theta_i=\sum_{j=1}^{i}\Beta_j \phi(x^{(j)})\\
+$\theta^{(1)}=\alpha(y^{(1)}-h_{\theta^{(0)}}(\phi(x^{(1)}))\phi(x^{(1)})$\\
+We can represent $\alpha(y^{(1)}-h_{\theta^{(0)}}(\phi(x^{(1)}))$ as $\beta_1$\\
+$\therefore \theta^{(1)}=\beta_1 \phi(x^{(1)})$\\
+$\theta^{(2)}=\theta^{(1)}+\alpha(y^{(2)}-h_{\theta^{(1)}}(\phi(x^{(2)}))\phi(x^{(2)})$\\
+Again we can represent $\alpha(y^{(2)}-h_{\theta^{(1)}}(\phi(x^{(2)}))$ as $\beta_2$\\
+$\therefore \theta^{(2)}=\beta_1 \phi(x^{(1)})+\beta_2 \phi(x^{(2)})$\\
+$\theta^{(3)}=\theta^{(2)}+\alpha(y^{(3)}-h_{\theta^{(2)}}(\phi(x^{(3)}))\phi(x^{(3)})$\\
+similarly we can represent $\alpha(y^{(3)}-h_{\theta^{(2)}}(\phi(x^{(3)}))$ as $\beta_3$\\
+$\therefore \theta^{(3)}=\beta_1 \phi(x^{(1)})+\beta_2 \phi(x^{(2)})+\beta_3 \phi(x^{(3)})$\\
+In general $\theta^{(i)}=\sum_{j=1}^{i}\beta_j \phi(x^{(j)})$\\
 $\theta_0$ is initialized with no coefficients (equivalent to zero).\\
 \\
 \\
 ii.\\
-We showed above that $\theta_i=\sum_{j=1}^{i}\Beta_j \phi(x^{(j)})\\
-therefore to calculate $h_{\theta^{(i)}}(X^{(i+1)})$ we just do it as $\sum_{j=1}^{i}\Beta_j K(\phi(x^{j}),\phi(x^{(i)}))$\\
+We showed above that $\theta^{(i)}=\sum_{j=1}^{i}\beta_j \phi(x^{(j)})$\\
+therefore to calculate $h_{\theta^{(i)}}(X^{(i+1)})$ we just do it as $\sum_{j=1}^{i}\beta_j K(\phi(x^{j}),\phi(x^{(i)}))$\\
 This is more efficient than working in the high dimension space.\\
 \\
 \\
 iii. \\
-Since $(y^{(1)}-h_{\theta^{(0)}(\phi(x^{(1)})) \neq 0$ only on misclassified examples, $\theta$ is only updated on these examples. So we dont need to store the ones that are classified correctly since they dont update $\theta$. This is similar to above, but slightly more efficent since we have a smaller list of examples.
+Since $(y^{(1)}-h_{\theta^{(0)}}(\phi(x^{(1)})) \neq 0$ only on misclassified examples, $\theta$ is only updated on these examples. So we dont need to store the ones that are classified correctly since they dont update $\theta$. This is similar to above, but slightly more efficent since we have a smaller list of examples.
 \end{answer}
