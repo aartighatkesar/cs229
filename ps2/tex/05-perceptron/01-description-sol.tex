@@ -12,12 +12,12 @@ $\theta^{(3)}=\theta^{(2)}+\alpha(y^{(3)}-h_{\theta^{(2)}}(\phi(x^{(3)}))\phi(x^
 similarly we can represent $\alpha(y^{(3)}-h_{\theta^{(2)}}(\phi(x^{(3)}))$ as $\beta_3$\\
 $\therefore \theta^{(3)}=\beta_1 \phi(x^{(1)})+\beta_2 \phi(x^{(2)})+\beta_3 \phi(x^{(3)})$\\
 In general $\theta^{(i)}=\sum_{j=1}^{i}\beta_j \phi(x^{(j)})$\\
-$\theta_0$ is initialized with no coefficients (equivalent to zero).\\
+$\theta^{(0)}$ is initialized with no coefficients (equivalent to zero).\\
 \\
 \\
 ii.\\
 We showed above that $\theta^{(i)}=\sum_{j=1}^{i}\beta_j \phi(x^{(j)})$\\
-therefore to calculate $h_{\theta^{(i)}}(X^{(i+1)})$ we just do it as $\sum_{j=1}^{i}\beta_j K(\phi(x^{j}),\phi(x^{(i)}))$\\
+therefore to calculate $h_{\theta^{(i)}}(x^{(i+1)})$ we just do it as $\sum_{j=1}^{i} K(\beta_j\phi(x^{j}),\phi(x^{(i)}))=\sum_{j=1}^{i}\beta_j K(\phi(x^{j}),\phi(x^{(i)}))$\\
 This is more efficient than working in the high dimension space.\\
 \\
 \\
