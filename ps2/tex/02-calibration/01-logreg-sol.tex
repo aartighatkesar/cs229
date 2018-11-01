@@ -17,11 +17,11 @@ x^{(i)}=
 \]\\
 where $x_0^{(i)}=1 \forall i \in \left\lbrace 1, \dots ,m \right\rbrace $\\
 We know that the cost function $J(\theta)$ is given by\\
-$J(\theta)=\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}logh_{\theta}(x^{(i)})+(1-y^{(i)})log(1-h_{\theta}(x^{(i)}))]$\\
-Also $\frac{\partial}{\partial \theta_j}J(\theta)=\frac{1}{m}\sum_{i=1}^{m}x_j^{(i)}(y^{(i)}-h_{\theta}(x^{(i)}))$\\
-$\therefore \frac{\partial}{\partial \theta_0}J(\theta)=\frac{1}{m}\sum_{i=1}^{m}x_0^{(i)}(y^{(i)}-h_{\theta}(x^{(i)}))=\frac{1}{m}\sum_{i=1}^{m}1 \cdot (y^{(i)}-h_{\theta}(x^{(i)}))$\\
+$J(\theta)=\frac{1}{m}\sum_{i=1}^{m}-[y^{(i)}logh_{\theta}(x^{(i)})+(1-y^{(i)})log(1-h_{\theta}(x^{(i)}))]$\\
+Also $\frac{\partial}{\partial \theta_j}J(\theta)=\frac{1}{m}\sum_{i=1}^{m}x_j^{(i)}(h_{\theta}(x^{(i)})-y^{(i)})$\\
+$\therefore \frac{\partial}{\partial \theta_0}J(\theta)=\frac{1}{m}\sum_{i=1}^{m}x_0^{(i)}(h_{\theta}(x^{(i)})-y^{(i)})=\frac{1}{m}\sum_{i=1}^{m}1 \cdot (h_{\theta}(x^{(i)})-y^{(i)})$\\
 Since the solution for logistic regression solves for the gradient=0, we know that $\frac{\partial}{\partial \theta_0}J(\theta)=0$\\
-$\therefore \frac{1}{m}\sum_{i=1}^{m}(y^{(i)}-h_{\theta}(x^{(i)})) \implies \sum_{i=1}^{m}h_{\theta}(x^{(i)})=\sum_{i=1}^{m}y^{(i)}$\\
+$\therefore \frac{1}{m}\sum_{i=1}^{m}(h_{\theta}(x^{(i)})-y^{(i)}) \implies \sum_{i=1}^{m}h_{\theta}(x^{(i)})=\sum_{i=1}^{m}y^{(i)}$\\
 But by definition $h_{\theta}(x)=p(y=1|x;\theta)$ therefore $\sum_{i=1}^{m}h_{\theta}(x^{(i)})=\sum_{i=1}^{m}p(y^{(i)}=1|x^{(i)};\theta)=\sum_{i=1}^{m}1\left\lbrace y^{(i)}=1 \right\rbrace$\\
 Also, since $0 \leq h_{\theta}(x^{(i)}) \leq 1$, therefore for $(a,b)=(0,1)$ it consists of our entire training set. Therefore\\
 $\frac{\sum_{i=1}^{m}p(y^{(i)}=1|x^{(i)};\theta)}{|\left\lbrace i \in I_{a,b}\right\rbrace|}=\frac{\sum_{i=1}^{m}1 \left\lbrace y^{(i)}=1\right\rbrace}{|\left\lbrace i \in I_{a,b}\right\rbrace|}$\\

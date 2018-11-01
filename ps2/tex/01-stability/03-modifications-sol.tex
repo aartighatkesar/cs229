@@ -3,5 +3,5 @@ i. Different learning rate would not lead to convergence on dataset B since it d
 ii. Decreasing learning rate over time would also not have an effect since this is an issue with the data bring perfectly linearly separable, not something related to the learning rate.\\
 iii. Linear scaling of input features  again would not have an issue since this is an issue with $theta \rightarrow \infty$ for $L(\theta) \rightarrow max$\\
 iv. Adding regularization term $||\theta||_2^2$ would help with convergence since it addresses the issue of $\theta \rightarrow \infty$ by preventing $\theta$ from getting too big.\\
-v. Adding zero-mean Gaussian noise could potentially address the issue, if the dataset was no longer perfectly linearly separable. However, if after adding the noise if the dataset was still perfectly linearly separable the issue would persist.\\
+v. Adding zero-mean Gaussian noise could potentially address the issue, if the dataset was no longer perfectly linearly separable. However, if after adding the noise the dataset was still perfectly linearly separable the issue would persist.\\
 \end{answer}
