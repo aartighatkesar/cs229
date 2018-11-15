@@ -1,14 +1,13 @@
 import pandas as pd
-import GlobalParameters
+from standard_ml_models import GlobalParameters
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from nltk.corpus import stopwords
 from collections import Counter
 
 #stops=set(ENGLISH_STOP_WORDS)
 stops=set(stopwords.words("english"))
 
-vars=GlobalParameters.GlobalVariables()
+vars= GlobalParameters.GlobalVariables()
 
 #all_qs=pd.Series(vars.train['question1'].tolist()+vars.train['question2'].tolist()+vars.test['question1'].tolist()+vars.test['question2'].tolist()).astype("str")
 all_qs=pd.Series(vars.train['question1'].tolist()+vars.train['question2'].tolist()).astype("str")
@@ -29,7 +28,7 @@ print("Setting tfidf score...")
 vars.train['tfidf_score']=vars.train.apply(lambda row: GlobalParameters.tfidf_match(row['question1'], row['question2'], tfidf), axis=1)
 print("Setting tfidf score...Done")
 print("setting word_match_share...")
-vars.train['anokas_score']=vars.train.apply(lambda row: GlobalParameters.tfidf_word_match_share(row['question1'], row['question2'],weights,stops), axis=1)
+vars.train['anokas_score']=vars.train.apply(lambda row: GlobalParameters.tfidf_word_match_share(row['question1'], row['question2'], weights, stops), axis=1)
 print("setting word_match_share...Done")
 vars.train['length1']=vars.train['question1'].apply(lambda x:len(x))
 vars.train['length2']=vars.train['question2'].apply(lambda x:len(x))
@@ -49,7 +48,7 @@ params = {}
 params['objective'] = 'binary:logistic'
 params['eval_metric'] = 'logloss'
 params['eta'] = 0.02
-params['max_depth'] = 4
+params['max_depth'] = 6
 
 d_train = xgb.DMatrix(x_train, label=y_train)
 d_valid = xgb.DMatrix(x_valid, label=y_valid)
@@ -65,7 +64,7 @@ print("Setting test tfidf score...")
 vars.test['tfidf_score']=vars.test.apply(lambda row: GlobalParameters.tfidf_match(row['question1'], row['question2'], tfidf), axis=1)
 print("Setting test tfidf score...Done")
 print("setting test word_match_share...")
-vars.test['anokas_score']=vars.test.apply(lambda row: GlobalParameters.tfidf_word_match_share(row['question1'], row['question2'],weights,stops), axis=1)
+vars.test['anokas_score']=vars.test.apply(lambda row: GlobalParameters.tfidf_word_match_share(row['question1'], row['question2'], weights, stops), axis=1)
 print("setting test word_match_share...Done")
 vars.test['length1']=vars.test['question1'].apply(lambda x:len(x))
 vars.test['length2']=vars.test['question2'].apply(lambda x:len(x))

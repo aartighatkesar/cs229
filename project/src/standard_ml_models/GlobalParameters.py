@@ -6,7 +6,7 @@ class GlobalVariables:
     def __init__(self):
         if sys.platform=='win32':
             self.DATA_DIR="C:\\Users\\tihor\\Documents\\kaggle\\quora\\"
-            self.OUTPUT_DIR='submissions/'
+            self.OUTPUT_DIR='../submissions/'
             #self.DATA_DIR="d:\hk_futures\\"
             self.systemslash = "\\"
             self.train=pd.read_csv(self.DATA_DIR+'train.csv')
