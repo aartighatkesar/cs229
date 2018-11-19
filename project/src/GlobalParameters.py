@@ -1,6 +1,7 @@
 import sys
 import pandas as pd
 import numpy as np
+from deep_learning_models.sentence_operations import split_by_whitespace
 
 class GlobalVariables:
     def __init__(self):
