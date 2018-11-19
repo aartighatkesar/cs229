@@ -1,2 +1,11 @@
-\begin{answer}
+\begin{answer}\\
+$D_{KL}(\hat{P}||P_{\theta})=\sum_{x}\hat{P}(x)log \frac{\hat{P}(x)}{P_{\theta}(x)}=-\sum_{x}\hat{P}(x)log \frac{P_{\theta}(x)}{\hat{P}(x)}$\\
+$=-\sum_{x}\hat{P}(x)log P_{\theta}(x)+\sum_{x}\hat{P}(x)log \hat{P}(x)$\\
+$\therefore arg \min\limits_{\theta} D_{KL}(\hat{P}||P_{\theta})=arg \min\limits_{\theta}-\sum_{x}\hat{P}(x)log P_{\theta}(x)+\sum_{x}\hat{P}(x)log \hat{P}(x)$\\
+We can exclude the $\sum_{x}\hat{P}(x)log \hat{P}(x)$ term since its not dependant on $\theta$\\
+$\therefore arg \min\limits_{\theta}-\sum_{x}\hat{P}(x)log P_{\theta}(x)=arg \max\limits_{\theta} \sum_{x}\hat{P}(x)log P_{\theta}(x)$\\
+$arg \max\limits_{\theta} \sum_{x} \frac{1}{m}\sum_{i=1}^{m}1 \left \lbrace x^{(i)}=x \right \rbrace log P_{\theta}(x)$\\
+$=arg \max\limits_{\theta} \frac{1}{m}\sum_{i=1}^{m} \sum_{x} 1 \left \lbrace x^{(i)}=x \right \rbrace log P_{\theta}(x)$\\
+Since $x^{(i)}$ is not dependant on $\theta$ we can remove it from the arg max and we are left with\\
+$arg \max\limits_{\theta} \sum_x log P_{\theta}(x)=\sum_{i=1}^{m} log P_{\theta}(x^{(i)})$\\
 \end{answer}

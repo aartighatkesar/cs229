@@ -1,2 +1,11 @@
-\begin{answer}
+\begin{answer}\\
+$D_{KL}(P||Q)=\sum_{x \in X}P(x) log \frac{P(x)}{Q(x)}$\\
+$D_{KL}(P||Q) \geq 0$ is equivalent to $-D_{KL}(P||Q) \leq 0$\\
+$\therefore -D_{KL}(P||Q)=-\sum_{x \in X}P(x) log \frac{P(x)}{Q(x)}=\sum_{x \in X}P(x) log \frac{Q(x)}{P(x)}$\\
+We know from bernoulli's equation that $e^y=lim_{n \rightarrow \infty}(1+\frac{y}{n})^n \geq 1+y$ for $y \geq -1$\\
+$\therefore e^y>1+y \implies e^{ln x}\geq 1+lnx \implies x \geq 1+lnx \implies lnx \leq x-1$\\
+$\therefore log \frac{Q(x)}{P(x)} \leq \frac{Q(x)}{P(x)}-1$\\
+$\therefore \sum_{x \in X}P(x) log \frac{Q(x)}{P(x)} \leq \sum_{x \in X}P(x) (\frac{Q(x)}{P(x)}-1)$\\
+$\sum_{x \in X}P(x) (\frac{Q(x)}{P(x)}-1)=\sum_{x \in X}Q(x)-\sum_{x \in X}P(x)=1-1=0$\\
+$\therefore \sum_{x \in X}P(x) log \frac{Q(x)}{P(x)} \leq 0 \implies -D_{KL}(P||Q) \leq 0 \implies D_{KL}(P||Q) \geq 0$\\
 \end{answer}

@@ -1,2 +1,7 @@
-\begin{answer}
+\begin{answer}\\
+The covariance matrix is given by\\
+$\sum=E[(X-E[X])(X-E[X])^T$\\
+But we proved in the prev section that the expected value is zero\\
+$\therefore Cov_{y \sim p(y;\theta)} \left[ \nabla_{\theta'}log p(y;\theta')|_{\theta'=\theta} \right] =E_{y \sim p(y;\theta)}[(\nabla_{\theta'}log p(y;\theta')-0)(\nabla_{\theta'}log p(y;\theta')-0)^T|_{\theta'=\theta}]$\\
+$=E_{y \sim p(y;\theta)}[\nabla_{\theta'}log p(y;\theta') \nabla_{\theta'}log p(y;\theta')^T|_{\theta'=\theta}]$\\
 \end{answer}
