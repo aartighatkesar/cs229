@@ -10,7 +10,7 @@ tf.app.flags.DEFINE_integer("num_epochs",100, "Number of epochs to train. 0 mean
 
 tf.app.flags.DEFINE_float("learning_rate",0.001,"Learning rate.")
 tf.app.flags.DEFINE_float("dropout",0.5,"Fraction of units randomly dropped on non-recurrent connections.")
-tf.app.flags.DEFINE_integer("batch_size",5000,"Batch size to use")
+tf.app.flags.DEFINE_integer("batch_size",8000,"Batch size to use")
 tf.app.flags.DEFINE_integer("hidden_size",200,"Size of the hidden states")
 tf.app.flags.DEFINE_integer("number_of_words_in_question",237,"The maximum words in each question")
 tf.app.flags.DEFINE_integer("number_of_letters_in_word", 1176, "The maximum characters in each word")
