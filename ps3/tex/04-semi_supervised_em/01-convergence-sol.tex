@@ -1,2 +1,15 @@
-\begin{answer}
- \end{answer}
+\begin{answer}\\
+$l_{semi-sup}(\theta)=(l_{unsup}(\theta)+l_{sup}(\theta))=\sum_{i=1}^{m} log \sum_{z^{(i)}=1}^{k} p(x^{(i)},z^{(i)};\theta)+ \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+$arg \max\limits_{\theta} l_{semi-sup}(\theta)=arg \max\limits_{\theta} (l_{unsup}(\theta)+l_{sup}(\theta))$\\
+$=arg \max\limits_{\theta} \left [ \sum_{i=1}^{m} log \sum_{z^{(i)}=1}^{k} p(x^{(i)},z^{(i)};\theta)+ \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta) \right ]$\\
+Lets expand the first sum term\\
+$\sum_{i=1}^{m} log \sum_{z^{(i)}=1}^{k} p(x^{(i)},z^{(i)};\theta)+ \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+$=\sum_{i=1}^{m} log \sum_{z^{(i)}\sim Q_i}Q_i(z^{(i)}) \left [ \frac{P(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} \right] + \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+$=\sum_{i=1}^{m} log E_{z^{(i)} \sim Q_i} \left [ \frac{P(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} \right] + \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+By Jensons inequality, the above term is greater than equal to the below term\\
+$\geq \sum_{i=1}^{m} E_{z^{(i)} \sim Q_i} log \left [ \frac{P(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} \right] + \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+replacing the $Q_i$ back into this equation we have\\
+$\geq \sum_{i=1}^{m} \sum_{z^{(i)}\sim Q_i}Q_i(z^{(i)}) log \left [ \frac{P(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} \right] + \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+$\therefore arg \max\limits_{\theta} \sum_{i=1}^{m} log \sum_{z^{(i)}=1}^{k} p(x^{(i)},z^{(i)};\theta)+ \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta) \geq arg \max\limits_{\theta}\sum_{i=1}^{m} \sum_{z^{(i)}\sim Q_i}Q_i(z^{(i)}) log \left [ \frac{P(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} \right] + \alpha \sum_{i=1}^{\tilde{m}}p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta)$\\
+$\therefore l_{semi-sup}(\theta^{(t+1)}) \geq l_{semi-sup}(\theta^{(t)})$ if we take $Q_i$ and $\theta^{(t+1)}$ defined as the E and M steps above.
+\end{answer}

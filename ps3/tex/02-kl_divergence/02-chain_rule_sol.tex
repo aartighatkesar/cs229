@@ -1,2 +1,10 @@
-\begin{answer}
+\begin{answer}\\
+$D_{KL}(P(x)||Q(x))=\sum_{x}P(x)log \frac{P(x)}{Q(x)}$\\
+$D_{KL}(P(Y)|x||Q(x))=\sum_{x}P(x)(\sum_y P(y|x)log \frac{P(y|x)}{Q(y|x)})$\\
+$D_{KL}(P(x)||Q(x))+D_{KL}(P(Y)|x||Q(x))=\sum_{x}P(x) \left[ log \frac{P(x)}{Q(x)}+ \sum_y P(y|x)log \frac{P(y|x)}{Q(y|x)}\right]$\\
+$=\sum_{x}P(x)\left[ \sum_y P(y|x)(log \frac{P(x)}{P(y)}+log \frac{P(y|x)}{Q(y|x)}) \right]$\\
+$=\sum_{x}P(x)\left[ \sum_y P(y|x) log \frac{P(x)P(y|x)}{Q(x)Q(y|x)} \right]$\\
+$=\sum_{x}P(x)\left[ \sum_y P(y|x) log \frac{P(x,y)}{Q(x,y)} \right]$\\
+$=\sum_{x,y}P(x,y)log\frac{P(x,y)}{Q(x,y)}$\\
+$=D_{KL}(P(x,y)||Q(x,y))$\\
 \end{answer}

@@ -1,2 +1,14 @@
-\begin{answer}
+\begin{answer}\\
+For the M step we take the derivative w.r.t $l$ for the below term with respect to each parameter and equate to zero.\\
+$\sum_{i=1}^{m}\sum_{j=1}^{k} w_j^{(i)} log \frac{\frac{1}{(2 \pi)^(n/2)|\sum|^(1/2)} exp(-\frac{1}{2}(x^{(i)}-\mu_j)^T\sum_j^{-1}(x^{(i)}-\mu_j)) \phi_j}{w_j^{(i)}} +\alpha \sum_{i=1}^{\tilde{m}}log p(\tilde{x}^{(i)}\tilde{z}^{(i)};\theta)$\\
+We saw from the class notes that the first term reduces to \\
+$\sum_{i=1}^{m}w_l^{(i)}(\sum^{-1}x^{(i)}-\sum^{-1} \mu_l)$\\
+We can similarly see that the second term reduces to \\
+$\sum_{i=1}^{\tilde{m}}(\sum^{-1}\tilde{x}^{(i)}-\sum^{-1}\mu_l)$\\
+$\therefore \sum_{i=1}^{m}w_l^{(i)}(\sum^{-1}x^{(i)}-\sum^{-1} \mu_l)+\sum_{i=1}^{\tilde{m}}(\sum^{-1}\tilde{x}^{(i)}-\sum^{-1}\mu_l)=0$\\
+$\implies \mu_l=\frac{\sum_{i=1}^{m}w_l^{(i)}x^{(i)}+\sum_{i=1}^{\tilde{m}}\tilde{x}^{(i)}}{\sum_{i=1}^{m}w_l^{(i)}+\sum_{i=1}^{\tilde{m}}1}$\\
+$\phi_l $ is still the same, i.e.\\
+$\phi_l=\frac{1}{m} \sum_{i=1}^{m}w_l^{(i)}x^{(i)}$\\
+and lastly,\\
+$\sum_l=\frac{\sum_{i=1}^{m}w_l^{(i)}(x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T + \sum_{i=1}^{\tilde{m}}(\tilde{x}^{(i)}-\mu_j)(\tilde{x}^{(i)}-\mu_j)^T}{\sum_{i=1}^{m}w_j^{(i)}+\sum_{i=1}^{\tilde{m}}1}$\\
 \end{answer}

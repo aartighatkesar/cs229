@@ -1,2 +1,5 @@
-\begin{answer}
+\begin{answer}\\
+$w^{(i)}_j=p(z^{(i)}|x^{(i)};\phi, \mu, \sum)$\\
+$=\frac{p(x^{(i)}|z^{(i)}=j;\phi, \mu, \sum)p(z^{(i)}=j)}{\sum_{l=1}^{k}p(x^{(i)}|z^{(i)}=l;\phi, \mu, \sum)p(z^{(i)}=l)}$\\
+$=\frac{\frac{1}{(2 \pi)^{n/2}|\sum|^{1/2}}exp(-\frac{1}{2}(x^{(i)}-\mu_j)^T\sum^{-1}(x^{(i)}-\mu_j))\phi_j}{\sum_{l=1}^{k} \frac{1}{(2 \pi)^{n/2}|\sum|^{1/2}}exp(-\frac{1}{2}(x^{(i)}-\mu_l)^T\sum^{-1}(x^{(i)}-\mu_l))\phi_l}$
 \end{answer}
