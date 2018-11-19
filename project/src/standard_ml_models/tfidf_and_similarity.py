@@ -1,5 +1,5 @@
 import pandas as pd
-from standard_ml_models import GlobalParameters
+import GlobalParameters
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from collections import Counter
@@ -7,7 +7,7 @@ from collections import Counter
 #stops=set(ENGLISH_STOP_WORDS)
 stops=set(stopwords.words("english"))
 
-vars= GlobalParameters.GlobalVariables()
+vars=GlobalParameters.GlobalVariables()
 
 #all_qs=pd.Series(vars.train['question1'].tolist()+vars.train['question2'].tolist()+vars.test['question1'].tolist()+vars.test['question2'].tolist()).astype("str")
 all_qs=pd.Series(vars.train['question1'].tolist()+vars.train['question2'].tolist()).astype("str")
@@ -37,7 +37,7 @@ vars.train['numWords2']=vars.train['question2'].apply(lambda x:len(x.split()))
 
 x_train=vars.train[['wordmatch_score','tfidf_score','anokas_score','length1','length2','numWords1','numWords2']]
 y_train = vars.train['is_duplicate'].values
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 x_train, x_valid, y_train, y_valid = train_test_split(x_train, y_train, test_size=0.2, random_state=4242)
 
