@@ -85,16 +85,8 @@ def sentence_to_word_and_char_token_ids(sentence,word2id,char2id):
 
     return tokens,word_ids,char_ids
 
-def pad_words(word_array,pad_size=0):
-    if pad_size==0:
-        maxlen=max([len(token) for token in word_array])
-    else:
-        maxlen=pad_size
-    retval=[]
-    for token in word_array:
-        newtoken=token+[PAD_ID]*(maxlen-len(token))
-        retval.append(newtoken)
-    return retval
+def pad_words(word_list,pad_size):
+    return word_list+[PAD_ID]*(pad_size-len(word_list))
 
 #---------------
 #need to fix this!!!
@@ -124,17 +116,17 @@ def convert_ids_to_char_vectors(char_ids,emb_matrix_char):
         retval.append(row_val)
     return retval
 
-def get_ids_and_vectors(text,word2id,char2id,word_embed_matrix,char_embed_matrix,num_words_in_sentence,word_length,discard_long=False):
+def get_ids_and_vectors(text,word2id,char2id,word_embed_matrix,char_embed_matrix,review_length,word_length,discard_long):
     tokens, word_ids, char_ids = sentence_to_word_and_char_token_ids(text, word2id, char2id)
-    if len(tokens) > num_words_in_sentence:
+    if len(tokens) > review_length:
         if discard_long:
             return None,None,None
         else:
-            tokens = tokens[:num_words_in_sentence]
-            word_ids = word_ids[:num_words_in_sentence]
-            char_ids = char_ids[:num_words_in_sentence]
-    word_ids=word_ids+[PAD_ID]*(num_words_in_sentence-len(word_ids))
-    #char_ids = pad_characters(char_ids, num_words_in_sentence, word_length)
+            tokens = tokens[:review_length]
+            word_ids = word_ids[:review_length]
+            char_ids = char_ids[:review_length]
+    word_ids = pad_words(word_ids, review_length)
+    char_ids = pad_characters(char_ids, review_length, word_length)
     word_ids_to_vectors = convert_ids_to_word_vectors(word_ids, word_embed_matrix)
     char_ids_to_vectors = convert_ids_to_char_vectors(char_ids, char_embed_matrix)
     return word_ids,word_ids_to_vectors,char_ids_to_vectors
