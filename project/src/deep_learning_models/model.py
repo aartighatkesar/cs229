@@ -25,6 +25,7 @@ class Model(object):
     def run_epoch(self, sess):
         raise NotImplementedError("Each Model must re-implement this method.")
 
+
 class NeuralLayer(object):
     def build_graph(self,values):
         raise NotImplementedError("Each Model must re-implement this method.")
