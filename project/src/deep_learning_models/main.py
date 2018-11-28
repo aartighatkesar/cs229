@@ -7,7 +7,7 @@ from deep_learning_models.quora_model_tfrecord import QuoraVanillaNeuralNetworkM
 ML_DATA_FILES="c:\\Users\\tihor\\Documents\\ml_data_files\\"
 
 tf.app.flags.DEFINE_integer("gpu", 1, "Which GPU to use, if you have multiple.")
-tf.app.flags.DEFINE_integer("num_epochs",100, "Number of epochs to train. 0 means train indefinitely")
+tf.app.flags.DEFINE_integer("num_epochs",30, "Number of epochs to train. 0 means train indefinitely")
 
 tf.app.flags.DEFINE_float("learning_rate",0.001,"Learning rate.")
 tf.app.flags.DEFINE_float("dropout",0.5,"Fraction of units randomly dropped on non-recurrent connections.")

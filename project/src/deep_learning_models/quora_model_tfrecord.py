@@ -59,11 +59,11 @@ class QuoraVanillaNeuralNetworkModel(Model):
         HIDDEN_LAYER3_SIZE=2048
 
         q1_words_sum=tf.reduce_sum(self.q1_words,1)   #(batch,word_embedding_size)
-        q1_mask_sum=tf.reduce_sum(self.q1_mask,1,keep_dims=True) +tf.constant(0.0001,dtype=tf.float32,shape=())  #(batch,1)
+        q1_mask_sum=tf.reduce_sum(self.q1_mask,1,keepdims=True) +tf.constant(0.0001,dtype=tf.float32,shape=())  #(batch,1)
         input_vector1=q1_words_sum/q1_mask_sum  #(batch,word_embedding_size)
 
         q2_words_sum=tf.reduce_sum(self.q2_words, 1)  # (batch,word_embedding_size)
-        q2_mask_sum=tf.reduce_sum(self.q2_mask, 1, keep_dims=True) + tf.constant(0.0001, dtype=tf.float32,shape=())  # (batch,1)
+        q2_mask_sum=tf.reduce_sum(self.q2_mask, 1, keepdims=True) + tf.constant(0.0001, dtype=tf.float32,shape=())  # (batch,1)
         input_vector2 = q2_words_sum/q2_mask_sum
 
         q1_layer1=NeuralNetworkHiddenLayer('Q1_HiddenLayer1', self.FLAGS.word_embedding_size, HIDDEN_LAYER1_SIZE,self.keep_prob)

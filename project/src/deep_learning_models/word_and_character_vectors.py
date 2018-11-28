@@ -133,7 +133,7 @@ def get_word_embeddings(datafile,vocab_size,dimension):
     word2id = {}
     id2word = {}
 
-    random_init = True
+    random_init = False
     # randomly initialize the special tokens
     if random_init:
         emb_matrix[:len(_START_VOCAB), :] = np.random.randn(len(_START_VOCAB), dim)

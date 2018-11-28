@@ -179,13 +179,17 @@ def _parse_function(example_proto):
     #return parsed_features['q1_word_ids'],q1_word_vectors_reshaped,parsed_features['q1_word_mask'],parsed_features['q2_word_ids'],q2_word_vectors_reshaped,parsed_features['q2_word_mask'],parsed_features['is_duplicate']
     return q1_word_vectors_reshaped,parsed_features['q1_word_mask'],q2_word_vectors_reshaped,parsed_features['q2_word_mask'],parsed_features['is_duplicate']
 
-dataset_train=tf.data.TFRecordDataset('train_glove.tfrecords').shuffle(buffer_size=100000).map(_parse_function, num_parallel_calls=5).repeat(1).batch(10000)
+dataset_train=tf.data.TFRecordDataset('train_glove.tfrecords').shuffle(buffer_size=100000).map(_parse_function, num_parallel_calls=5).repeat(1).batch(10)
 iterator_train=dataset_train.make_initializable_iterator()
 next_element_train=iterator_train.get_next()
 
-dataset_val=tf.data.TFRecordDataset('val_glove.tfrecords').shuffle(buffer_size=100000).map(_parse_function, num_parallel_calls=5).repeat(1).batch(10000)
+dataset_val=tf.data.TFRecordDataset('val_glove.tfrecords').shuffle(buffer_size=100000).map(_parse_function, num_parallel_calls=5).repeat(1).batch(10)
 iterator_val=dataset_val.make_initializable_iterator()
 next_element_val=iterator_val.get_next()
+
+dataset_test=tf.data.TFRecordDataset('test_glove.tfrecords').map(_parse_function, num_parallel_calls=5).repeat(1).batch(10)
+iterator_test=dataset_test.make_initializable_iterator()
+next_element_test=iterator_test.get_next()
 
 sess=tf.Session()
 print("-------Running Train--------")
@@ -194,11 +198,11 @@ for i in range(1):
     while True:
         try:
             a,b,c,d,e=sess.run(next_element_train)
-            print(a.shape)
-            print(b.shape)
-            print(c.shape)
-            print(d.shape)
-            print(e.shape)
+            print(a)
+            print(b)
+            print(c)
+            print(d)
+            print(e)
             print("--------------------------------")
             break
         except tf.errors.OutOfRangeError:
@@ -210,11 +214,27 @@ for i in range(1):
     while True:
         try:
             a,b,c,d,e=sess.run(next_element_val)
-            print(a.shape)
-            print(b.shape)
-            print(c.shape)
-            print(d.shape)
-            print(e.shape)
+            print(a)
+            print(b)
+            print(c)
+            print(d)
+            print(e)
+            print("--------------------------------")
+            break
+        except tf.errors.OutOfRangeError:
+            print("Reached end of batch!!!")
+            break
+print("-------Running Test--------")
+for i in range(1):
+    sess.run(iterator_test.initializer)
+    while True:
+        try:
+            a,b,c,d,e=sess.run(next_element_test)
+            print(a)
+            print(b)
+            print(c)
+            print(d)
+            print(e)
             print("--------------------------------")
             break
         except tf.errors.OutOfRangeError:
