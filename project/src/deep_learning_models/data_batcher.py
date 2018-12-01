@@ -24,12 +24,6 @@ class QuoraDataObject(object):
         temp_train_data,temp_dev_data=train_test_split(train_data,test_size=test_size)
         temp_train_data=temp_train_data.copy()
         temp_dev_data=temp_dev_data.copy()
-        #q1_train=temp_train_data['question1'].tolist()
-        #q2_train=temp_train_data['question1'].tolist()
-        #q1_dev=temp_dev_data['question1'].tolist()
-        #q2_dev=temp_dev_data['question1'].tolist()
-        #q1_test=test_data['question1'].tolist()
-        #q2_test=test_data['question2'].tolist()
 
         self.number_of_words_in_question = number_of_words_in_question
         self.number_of_letters_in_word = number_of_letters_in_word
@@ -38,12 +32,14 @@ class QuoraDataObject(object):
         temp_train_data['q2_word_ids']=temp_train_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
         temp_dev_data['q1_word_ids'] = temp_dev_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
         temp_dev_data['q2_word_ids'] = temp_dev_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        #test_data['q1_word_ids'] = test_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        #test_data['q2_word_ids'] = test_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        test_data['q1_word_ids'] = test_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        test_data['q2_word_ids'] = test_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
         self.train=temp_train_data[['q1_word_ids','q2_word_ids','is_duplicate']].copy()
         self.dev=temp_dev_data[['q1_word_ids','q2_word_ids','is_duplicate']].copy()
-        #self.test=test_data[['q1_word_ids,q2_word_ids,test_id']]
-        self.test=None
+        print(test_data.shape)
+        print(test_data.head())
+        print(test_data.columns)
+        self.test=test_data[['q1_word_ids,q2_word_ids,test_id']].copy()
 
     def generate_one_epoch(self):
         num_batches=int(self.train.shape[0])//self.batch_size
@@ -83,7 +79,7 @@ class QuoraDataObject(object):
             q2_ids = np.array(test_subset ['q2_word_ids'].tolist())
             q1_mask = (q1_ids != PAD_ID).astype(np.int32)
             q2_mask = (q2_ids != PAD_ID).astype(np.int32)
-            labels = np.array(test_subset ['tet_id'].tolist())
+            labels = np.array(test_subset ['test_id'].tolist())
             labels=labels.reshape((labels.shape[0],1))
             yield q1_ids, q2_ids, q1_mask, q2_mask, labels
 
