@@ -1,26 +1,13 @@
 from deep_learning_models.word_and_character_vectors import PAD_ID,UNK_ID
 import re
+from nltk import word_tokenize
 
-def split_by_whitespace(sentence,splitMidSentenceControl=False):
-    words=[]
-    if splitMidSentenceControl:
-        for word in sentence.strip().split():
-            if word[-1] in '.,?!;':
-                words.append(word[:-1])
-                words.append(word[-1])
-            else:
-                words.append(word)
-    else:
-        for word in sentence.strip().split():
-            words.extend(re.split(" ",word))
-    return [w for w in words if w]
-
-def sentence_to_word_ids(sentence,word2id):
+def sentence_to_word_ids(sentence,word2id,stopwords=set()):
     """
     convert tokenized sentence into word indices
     any word not present gets converted to unknown
     """
-    tokens=split_by_whitespace(sentence)
+    tokens=process_text(sentence)
     word_ids=[]
     for w in tokens:
         word_ids.append(word2id.get(w,UNK_ID))
@@ -32,7 +19,7 @@ def sentence_to_char_ids(sentence,char2id):
     convert tokenized sentence into char indices
     any char not present gets converted to unknown
     """
-    tokens=split_by_whitespace(sentence)
+    tokens=process_text(sentence)
     char_ids=[]
     for w in tokens:
         char_word_ids=[]
@@ -77,6 +64,7 @@ def sentence_to_word_and_char_token_ids(sentence,word2id,char2id):
     word_ids=[]
     char_ids=[]
     for w in tokens:
+
         word_ids.append(word2id.get(w,UNK_ID))
         char_word_ids=[]
         for c in w:
@@ -130,3 +118,15 @@ def get_ids_and_vectors(text,word2id,char2id,word_embed_matrix,char_embed_matrix
     word_ids_to_vectors = convert_ids_to_word_vectors(word_ids, word_embed_matrix)
     char_ids_to_vectors = convert_ids_to_char_vectors(char_ids, char_embed_matrix)
     return word_ids,word_ids_to_vectors,char_ids_to_vectors
+
+
+def process_text(text,stopwords=set()):
+    return_tokens=[]
+    words=word_tokenize(text.lower())
+    p = re.compile('[a-zA-Z]+')
+    for word in words:
+        if word not in stopwords:
+            temp=p.match(word)
+            if temp is not None:
+                return_tokens.append(p.match(word).group(0))
+    return return_tokens

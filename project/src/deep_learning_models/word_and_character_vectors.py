@@ -14,8 +14,10 @@ UNK_ID = 1
 #these are the lines in the glove and fasttext files
 #GLOVE_VOCAB_SIZE=5000
 #GLOVE_FILENAME='glove_small.txt'
-GLOVE_VOCAB_SIZE=1917494
-GLOVE_FILENAME='glove.42B.300d.txt'
+GLOVE_VOCAB_SIZE=91469
+GLOVE_FILENAME='quora_glove.txt'
+#GLOVE_VOCAB_SIZE=1917494
+#GLOVE_FILENAME='glove.42B.300d.txt'
 #GLOVE_VOCAB_SIZE=400000
 #GLOVE_FILENAME='glove.6B.300d.txt'
 GLOVE_DIMENSION=300
@@ -104,6 +106,10 @@ def get_glove(data_file_path):
     path=os.path.join(data_file_path,GLOVE_FILENAME)
     return get_word_embeddings(path,GLOVE_VOCAB_SIZE,GLOVE_DIMENSION)
 
+def get_glove_with_dict(data_file_path,words_to_include):
+    path=os.path.join(data_file_path,GLOVE_FILENAME)
+    return get_word_embeddings_with_dict(path,GLOVE_VOCAB_SIZE,GLOVE_DIMENSION,words_to_include)
+
 #gets fasttext vectors. need to pass just the data path location
 #adds glove.42B.300d to path
 def get_fasttext(data_file_path):
@@ -133,10 +139,10 @@ def get_word_embeddings(datafile,vocab_size,dimension):
     word2id = {}
     id2word = {}
 
-    random_init = False
-    # randomly initialize the special tokens
+    random_init = True
+    # randomly initialize the unknown tokens
     if random_init:
-        emb_matrix[:len(_START_VOCAB), :] = np.random.randn(len(_START_VOCAB), dim)
+        emb_matrix[1, :] = np.random.randn(1, dim)
 
     # put start tokens in the dictionaries
     idx = 0
@@ -163,3 +169,56 @@ def get_word_embeddings(datafile,vocab_size,dimension):
 
     return emb_matrix, word2id, id2word
 
+def get_word_embeddings_with_dict(datafile,vocab_size,dimension,words_to_include):
+    """Reads from the data file and returns embedding matrix and
+    mappings from words to word ids.
+
+    Input:
+      datafile: path to data file
+      vocab_size: size of vocabulary
+      dimension: vector dimension
+
+    Returns:
+      emb_matrix: Numpy array shape (vocab_size, dimension) containing vector embeddings
+        (plus PAD and UNK embeddings in first two rows).
+        The rows of emb_matrix correspond to the word ids given in word2id and id2word
+      word2id: dictionary mapping word (string) to word id (int)
+      id2word: dictionary mapping word id (int) to word (string)
+    """
+    print ("Loading vectors from file: %s" % datafile)
+    dim = dimension
+
+    emb_matrix = np.zeros((len(words_to_include) + len(_START_VOCAB), dim))
+    word2id = {}
+    id2word = {}
+
+    random_init = True
+    # randomly initialize the unknown tokens
+    if random_init:
+        emb_matrix[1, :] = np.random.randn(1, dim)
+
+    # put start tokens in the dictionaries
+    idx = 0
+    for word in _START_VOCAB:
+        word2id[word] = idx
+        id2word[idx] = word
+        idx += 1
+
+    # go through glove vecs
+    with open(datafile, 'r', encoding="utf8") as fh:
+        for line in tqdm(fh, total=vocab_size):
+            line = line.rstrip().split(" ")
+            word = line[0]
+            if word in words_to_include:
+                vector = list(map(float, line[1:]))
+                emb_matrix[idx, :] = vector
+                word2id[word] = idx
+                id2word[idx] = word
+                idx += 1
+
+    final_vocab_size = len(words_to_include) + len(_START_VOCAB)
+    assert len(word2id) == final_vocab_size
+    assert len(id2word) == final_vocab_size
+    assert idx == final_vocab_size
+
+    return emb_matrix, word2id, id2word

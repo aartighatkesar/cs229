@@ -126,11 +126,15 @@ class BiRNNLayer(NeuralLayer):
 
     def build_graph(self,inputs,masks):
         with vs.variable_scope(self.name):
-            input_lens=tf.reduce_sum(masks,reduction_indices=1)
-            (fw_out,bw_out),_=tf.nn.bidirectional_dynamic_rnn(self.rnn_cell_fw,self.rnn_cell_bw,inputs,input_lens,dtype=tf.float32)
+            input_lens = tf.reduce_sum(masks, reduction_indices=1)  # shape (batch_size)
+            (fw_out,bw_out),(fw_final_state,bw_final_state)=tf.nn.bidirectional_dynamic_rnn(self.rnn_cell_fw,self.rnn_cell_bw,inputs,input_lens,dtype=tf.float32)
+            fw_out_last=fw_final_state.h
+            bw_out_last=bw_final_state.h
             out=tf.concat([fw_out,bw_out],2)
+            out_last=tf.concat([fw_out_last,bw_out_last],1)
             out=tf.nn.dropout(out,self.keep_prob)
-            return out
+            out_last= tf.nn.dropout(out_last,self.keep_prob)
+            return out,out_last
 
 class SimpleSoftmax(NeuralLayer):
     def __init__(self):
