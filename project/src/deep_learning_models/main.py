@@ -6,7 +6,7 @@ from deep_learning_models.quora_model import QuoraBiRNNModel
 ML_DATA_FILES="c:\\Users\\tihor\\Documents\\ml_data_files\\"
 
 tf.app.flags.DEFINE_integer("gpu", 1, "Which GPU to use, if you have multiple.")
-tf.app.flags.DEFINE_integer("num_epochs",30, "Number of epochs to train. 0 means train indefinitely")
+tf.app.flags.DEFINE_integer("num_epochs",40, "Number of epochs to train. 0 means train indefinitely")
 
 tf.app.flags.DEFINE_float("max_gradient_norm", 5.0, "Clip gradients to this norm.")
 tf.app.flags.DEFINE_float("learning_rate",0.001,"Learning rate.")
@@ -31,6 +31,16 @@ sess=tf.Session()
 init=tf.global_variables_initializer()
 sess.run(init)
 for epoch in range(FLAGS.num_epochs):
-    validation_accuracy=qm.run_epoch(sess)
+    train_loss, train_accuracy, validation_loss, validation_accuracy=qm.run_epoch(sess)
+    print('train_loss for epoch ' + str(epoch) + ' => ' + str(train_loss))
+    print('train_accuracy for epoch ' + str(epoch) + ' => ' + str(train_accuracy))
+    print('val_loss for epoch ' + str(epoch) + ' => ' + str(validation_loss))
     print('validation_accuracy for epoch ' + str(epoch) + ' => ' + str(validation_accuracy))
-print('Final validation_accuracy => ' +str(qm.get_validation_accuracy(sess)))
+dev_loss, dev_accuracy=qm.get_validation_accuracy(sess)
+print('Final validation_loss => ' +str(dev_loss))
+print('Final validation_accuracy => ' +str(dev_accuracy))
+lineids, output=qm.get_test_data(sess)
+with open('submission.csv','w') as f:
+    f.write('test_id,is_duplicate\n')
+    for i,item in enumerate(lineids):
+        f.write(str(item[0])+','+str(output[i][0])+'\n')
