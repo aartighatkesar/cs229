@@ -10,8 +10,8 @@ def sentence_to_word_ids(sentence,word2id,stopwords=set()):
     tokens=process_text(sentence)
     word_ids=[]
     for w in tokens:
-        word_ids.append(word2id.get(w,UNK_ID))
-
+        if w not in stopwords:
+            word_ids.append(word2id.get(w,UNK_ID))
     return tokens,word_ids
 
 def sentence_to_char_ids(sentence,char2id):
