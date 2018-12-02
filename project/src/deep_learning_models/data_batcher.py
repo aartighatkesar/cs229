@@ -21,25 +21,26 @@ class QuoraDataObject(object):
         self.word2id=word2id
         self.char2id=char2id
         self.batch_size=batch_size
-        temp_train_data,temp_dev_data=train_test_split(train_data,test_size=test_size)
-        temp_train_data=temp_train_data.copy()
-        temp_dev_data=temp_dev_data.copy()
+        self.train,self.dev=train_test_split(train_data,test_size=test_size)
+        self.test=test_data
+        #temp_train_data=temp_train_data.copy()
+        #temp_dev_data=temp_dev_data.copy()
 
         self.number_of_words_in_question = number_of_words_in_question
         self.number_of_letters_in_word = number_of_letters_in_word
         self.discard_long = discard_long
-        temp_train_data['q1_word_ids']=temp_train_data['question1'].apply(lambda x:get_ids_and_pad(x,self.word2id,self.number_of_words_in_question,self.discard_long))
-        temp_train_data['q2_word_ids']=temp_train_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        temp_dev_data['q1_word_ids'] = temp_dev_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        temp_dev_data['q2_word_ids'] = temp_dev_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        test_data['q1_word_ids'] = test_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        test_data['q2_word_ids'] = test_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
-        self.train=temp_train_data[['q1_word_ids','q2_word_ids','is_duplicate']].copy()
-        self.dev=temp_dev_data[['q1_word_ids','q2_word_ids','is_duplicate']].copy()
-        print(test_data.shape)
-        print(test_data.head())
-        print(test_data.columns)
-        self.test=test_data[['q1_word_ids,q2_word_ids,test_id']].copy()
+        #temp_train_data['q1_word_ids']=temp_train_data['question1'].apply(lambda x:get_ids_and_pad(x,self.word2id,self.number_of_words_in_question,self.discard_long))
+        #temp_train_data['q2_word_ids']=temp_train_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        #temp_dev_data['q1_word_ids'] = temp_dev_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        #temp_dev_data['q2_word_ids'] = temp_dev_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        #test_data['q1_word_ids'] = test_data['question1'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        #test_data['q2_word_ids'] = test_data['question2'].apply(lambda x: get_ids_and_pad(x, self.word2id, self.number_of_words_in_question, self.discard_long))
+        #self.train=temp_train_data[['q1_word_ids','q2_word_ids','is_duplicate']].copy()
+        #self.dev=temp_dev_data[['q1_word_ids','q2_word_ids','is_duplicate']].copy()
+        #print(test_data.shape)
+        #print(test_data.head())
+        #print(test_data.columns)
+        #self.test=test_data['q1_word_ids,q2_word_ids,test_id'].copy()
 
     def generate_one_epoch(self):
         num_batches=int(self.train.shape[0])//self.batch_size
